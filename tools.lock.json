@@ -1,0 +1,24 @@
+{
+  "generated_at": "2026-06-07T07:17:02.257349+00:00",
+  "lockfile_version": 1,
+  "platform": {
+    "distro": "debian",
+    "has_go": false,
+    "has_sudo": true,
+    "pkg_mgr": "apt",
+    "python": "/usr/local/bin/python",
+    "system": "linux"
+  },
+  "tools": [
+    {
+      "already_installed": false,
+      "method": "pip",
+      "name": "sqlmap",
+      "notes": "install succeeded \u2014 but /home/user/.local/bin is not on your PATH; add it to use sqlmap directly",
+      "pinned": "1.8.10",
+      "resolved_path": "/home/user/.local/bin/sqlmap",
+      "resolved_version": "1.8.10#pip",
+      "success": true
+    }
+  ]
+}

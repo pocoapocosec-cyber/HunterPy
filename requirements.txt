@@ -1,0 +1,13 @@
+# All deps are optional — HunterPy falls back to stdlib when they're missing.
+
+requests>=2.31         # nicer HTTP for custom modules
+beautifulsoup4>=4.12   # optional richer crawl parsing
+rich>=13.0             # pretty terminal output
+urllib3>=2.0
+
+# Optional richer recon (not required by tests)
+dnspython>=2.4
+python-whois>=0.9
+
+# Dev / tests
+pytest>=7.4

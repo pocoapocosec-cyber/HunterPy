@@ -1,0 +1,42 @@
+# Convenience compose file for local use.
+# Use cases:
+#   docker compose run --rm hunterpy -t example.com --mode passive \
+#       --confirm-authorized --i-am-authorized --no-nvd
+#   docker compose run --rm shell
+#
+# Reports land in ./output on the host (the default --output dir for
+# the CLI is /work/output, which we bind-mount here).
+
+services:
+  hunterpy:
+    build:
+      context: .
+      # Pin the Dockerfile so a future rename doesn't break compose.
+      dockerfile: Dockerfile
+    image: hunterpy:2.0
+    # The image's ENTRYPOINT is `python main.py`; CLI args after the
+    # service name become argv.
+    volumes:
+      - ./output:/work/output
+      # Mount your own scope files / wordlists from the host as needed:
+      # - ./wordlists:/work/wordlists:ro
+    environment:
+      # Set NVD_API_KEY on the host (export NVD_API_KEY=...) to bump the
+      # rate limit from 5 req/30s to 50 req/30s.
+      - NVD_API_KEY=${NVD_API_KEY:-}
+      - HUNTERPY_IN_DOCKER=1
+    # Run as your host user so files in ./output aren't owned by root.
+    # Comment out if your distro's first-user uid isn't 1000.
+    user: "${UID:-1000}:${GID:-1000}"
+
+  # `docker compose run --rm shell` drops you into bash with every tool
+  # available — useful for manual nmap/nikto/sqlmap exploration.
+  shell:
+    image: hunterpy:2.0
+    entrypoint: /bin/bash
+    volumes:
+      - ./output:/work/output
+    environment:
+      - NVD_API_KEY=${NVD_API_KEY:-}
+    user: "${UID:-1000}:${GID:-1000}"
+    profiles: ["shell"]
