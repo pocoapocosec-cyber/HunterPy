@@ -1,0 +1,9 @@
+/* Dark theme is default (set via class="dark" on <html>) */
+.dark {
+  color-scheme: dark;
+}
+
+/* Light theme reserved for future toggle */
+.light {
+  color-scheme: light;
+}
