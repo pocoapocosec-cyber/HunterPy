@@ -1,0 +1,41 @@
+{
+  "id": "report_001",
+  "scan_id": "scan_001",
+  "format": "html",
+  "generated_at": "2026-06-06T17:43:22Z",
+  "title": "Reconnaissance report — example.com",
+  "executive_summary": {
+    "overview": "Passive reconnaissance against example.com surfaced 11 findings, with 1 finding flagged as INTERESTING (weak CSP directive). No critical issues were discovered during the passive scan.",
+    "risk_rating": "medium",
+    "key_findings": [
+      "Weak CSP allows unsafe-inline scripts (HIGH).",
+      "Multiple missing security headers (HSTS, X-Frame-Options, X-Content-Type-Options).",
+      "Server header discloses 'cloudflare' (LOW)."
+    ],
+    "recommendations": [
+      "Tighten Content-Security-Policy and remove unsafe directives.",
+      "Add HSTS with preload and includeSubDomains.",
+      "Strip or normalize the Server header."
+    ],
+    "impact_assessment": "Low immediate impact; primarily defense-in-depth gaps."
+  },
+  "statistics": {
+    "total_findings": 11,
+    "by_severity": { "critical": 0, "high": 3, "medium": 4, "low": 2, "info": 2 },
+    "by_tier":     { "INTERESTING": 1, "COMMON": 8, "FALSE_ALARM": 2 },
+    "by_type": {
+      "weak_csp": 1, "missing_security_header": 5, "info_disclosure_header": 2,
+      "weak_key_size": 1, "dns_a": 1, "tech_fingerprint": 1
+    },
+    "by_module": { "headers": 8, "ssl": 1, "fingerprint": 1, "dns": 1 },
+    "scan_duration": 20,
+    "modules_run": 8,
+    "requests_sent": 42,
+    "coverage": {
+      "endpoints_discovered": 6,
+      "parameters_tested": 0,
+      "forms_found": 0
+    }
+  },
+  "findings": []
+}

@@ -1,0 +1,18 @@
+[
+  { "name": "fingerprint", "status": "completed", "progress": 100, "findings_count": 2,
+    "started_at": "2026-06-06T18:10:05Z", "completed_at": "2026-06-06T18:10:08Z" },
+  { "name": "headers",     "status": "completed", "progress": 100, "findings_count": 3,
+    "started_at": "2026-06-06T18:10:05Z", "completed_at": "2026-06-06T18:10:09Z" },
+  { "name": "ssl",         "status": "completed", "progress": 100, "findings_count": 1,
+    "started_at": "2026-06-06T18:10:05Z", "completed_at": "2026-06-06T18:10:12Z" },
+  { "name": "surface",     "status": "completed", "progress": 100, "findings_count": 2,
+    "started_at": "2026-06-06T18:10:12Z", "completed_at": "2026-06-06T18:10:30Z" },
+  { "name": "nikto",       "status": "running",   "progress": 45,  "findings_count": 0,
+    "started_at": "2026-06-06T18:10:30Z" },
+  { "name": "gobuster",    "status": "running",   "progress": 30,  "findings_count": 2,
+    "started_at": "2026-06-06T18:10:30Z" },
+  { "name": "sqlmap",      "status": "pending",   "progress": 0,   "findings_count": 0 },
+  { "name": "cors",        "status": "completed", "progress": 100, "findings_count": 1 },
+  { "name": "whois",       "status": "skipped",   "progress": 0,   "findings_count": 0,
+    "error": "python-whois not installed" }
+]

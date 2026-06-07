@@ -1,0 +1,73 @@
+[
+  {
+    "id": "scan_001",
+    "target": "https://example.com",
+    "mode": "passive",
+    "status": "completed",
+    "phase": "reporting",
+    "progress": 100,
+    "modules": ["fingerprint", "headers", "ssl", "dns", "whois", "surface", "js", "js_vulns", "endpoints"],
+    "options": {
+      "threads": 5, "rate_limit": 5, "timeout": 30, "delay": 0.1,
+      "nvd_enabled": true, "waf_evasion": false
+    },
+    "created_at":   "2026-06-06T17:43:00Z",
+    "started_at":   "2026-06-06T17:43:01Z",
+    "completed_at": "2026-06-06T17:43:21Z",
+    "findings_count": 11,
+    "findings_by_severity": {
+      "critical": 0, "high": 3, "medium": 4, "low": 2, "info": 2
+    },
+    "findings_by_tier": {
+      "INTERESTING": 1, "COMMON": 8, "FALSE_ALARM": 2
+    },
+    "duration": 20
+  },
+  {
+    "id": "scan_002",
+    "target": "https://staging.example.com",
+    "mode": "standard",
+    "status": "running",
+    "phase": "active_scanning",
+    "progress": 62,
+    "modules": ["headers", "ssl", "fingerprint", "endpoints", "nikto", "gobuster", "ffuf", "cors", "sqlmap"],
+    "options": {
+      "threads": 10, "rate_limit": 10, "timeout": 30, "delay": 0.1,
+      "nvd_enabled": true, "waf_evasion": true
+    },
+    "created_at":  "2026-06-06T18:10:00Z",
+    "started_at":  "2026-06-06T18:10:02Z",
+    "findings_count": 7,
+    "findings_by_severity": {
+      "critical": 1, "high": 2, "medium": 3, "low": 1, "info": 0
+    },
+    "findings_by_tier": {
+      "INTERESTING": 3, "COMMON": 3, "FALSE_ALARM": 1
+    }
+  },
+  {
+    "id": "scan_003",
+    "target": "https://dev.example.com",
+    "mode": "full",
+    "status": "failed",
+    "phase": "active_scanning",
+    "progress": 35,
+    "modules": ["headers", "ssl", "nuclei", "nikto", "gobuster", "ffuf"],
+    "options": {
+      "threads": 20, "rate_limit": 20, "timeout": 30, "delay": 0,
+      "nvd_enabled": true, "waf_evasion": false
+    },
+    "created_at":  "2026-06-05T22:00:00Z",
+    "started_at":  "2026-06-05T22:00:05Z",
+    "completed_at": "2026-06-05T22:03:00Z",
+    "findings_count": 4,
+    "findings_by_severity": {
+      "critical": 0, "high": 1, "medium": 2, "low": 1, "info": 0
+    },
+    "findings_by_tier": {
+      "INTERESTING": 1, "COMMON": 3, "FALSE_ALARM": 0
+    },
+    "duration": 175,
+    "error": "nuclei timed out"
+  }
+]

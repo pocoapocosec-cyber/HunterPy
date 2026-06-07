@@ -1,0 +1,54 @@
+{
+  "url":      "https://staging.example.com",
+  "hostname": "staging.example.com",
+  "ip_address": "104.20.23.154",
+  "port":     443,
+  "protocol": "https",
+  "tech_stack": {
+    "server": "Apache/2.4.49",
+    "cms":    "WordPress 6.2",
+    "programming_language": "PHP 8.1",
+    "framework": "WordPress",
+    "cdn": "Cloudflare",
+    "frontend_frameworks": ["React"],
+    "javascript_libraries": [
+      { "name": "jquery", "version": "3.4.1", "vulnerable": true,
+        "cve_ids": ["CVE-2020-11023"] },
+      { "name": "lodash", "version": "4.17.10", "vulnerable": true,
+        "cve_ids": ["CVE-2020-8203"] }
+    ]
+  },
+  "dns_records": {
+    "a":     ["104.20.23.154", "172.66.147.243"],
+    "aaaa":  ["2606:4700:10::6814:179a"],
+    "mx":    [{ "priority": 10, "mail_server": "mx1.example.com" }],
+    "ns":    ["ns1.cloudflare.com", "ns2.cloudflare.com"],
+    "txt":   ["v=spf1 -all"],
+    "cname": null
+  },
+  "ssl_info": {
+    "valid":   true,
+    "issuer":  "Cloudflare Inc ECC CA-3",
+    "subject": "*.example.com",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to":   "2027-01-01T00:00:00Z",
+    "days_remaining": 209,
+    "version": "TLSv1.3",
+    "cipher":  "TLS_AES_256_GCM_SHA384",
+    "vulnerabilities": []
+  },
+  "waf_detected": {
+    "detected": true,
+    "vendor":   "Cloudflare",
+    "confidence": 0.95,
+    "signatures": ["cf-ray header", "__cfduid cookie"]
+  },
+  "rate_limit_detected": true,
+  "whois": {
+    "registrar": "Acme Registrar",
+    "creation_date":  "2010-08-14",
+    "expiration_date": "2030-08-14",
+    "name_servers": ["ns1.cloudflare.com", "ns2.cloudflare.com"],
+    "org": "Example Inc"
+  }
+}
