@@ -1,0 +1,38 @@
+{
+  "_description": "Patterns that, when matched against a finding's title/description/url, escalate it to the INTERESTING tier. Pure JSON — extending is just a PR away.",
+  "patterns": [
+    {"id": "int-admin-subdomain", "regex": "^(admin|administrator|manage|panel)\\.", "reason": "Admin interface exposed"},
+    {"id": "int-dev-subdomain",   "regex": "^(dev|staging|test|qa|preprod)\\.",      "reason": "Non-production subdomain on public DNS"},
+    {"id": "int-internal",        "regex": "^(internal|intranet|corp|vpn)\\.",       "reason": "Possibly internal asset exposed"},
+    {"id": "int-git-exposure",    "contains": ".git/",                                "reason": "Source-control directory exposed"},
+    {"id": "int-env-exposure",    "contains": ".env",                                 "reason": "Environment file exposed"},
+    {"id": "int-backup-file",     "regex": "\\.(bak|old|backup|swp|orig)$",          "reason": "Backup file exposed"},
+    {"id": "int-default-creds",   "contains": "default credentials",                  "reason": "Default credentials detected"},
+
+    {"id": "int-symfony-profiler",        "contains": "_profiler",
+     "reason": "Symfony profiler exposed (SECREP1 + SECREP2 pattern)"},
+    {"id": "int-symfony-debug-token",     "contains": "x-debug-token",
+     "reason": "Symfony debug mode header observed"},
+    {"id": "int-symfony-phpinfo",         "contains": "_profiler/phpinfo",
+     "reason": "Symfony profiler exposes phpinfo (env vars + DB creds)"},
+    {"id": "int-symfony-open-file",       "contains": "_profiler/open?file=",
+     "reason": "Symfony profiler arbitrary file read"},
+    {"id": "int-symfony-app-dev",         "contains": "app_dev.php",
+     "reason": "Legacy Symfony dev front controller reachable"},
+    {"id": "int-symfony-parameters-yml",  "contains": "parameters.yml",
+     "reason": "Symfony parameters.yml — typically leaks DB creds + app secret"},
+    {"id": "int-symfony-app-env-injection", "contains": "?+--env=",
+     "reason": "Symfony APP_ENV query-string injection observed"},
+
+    {"id": "int-eol-php",                 "regex": "PHP/5\\.|PHP/7\\.[0-3]",
+     "reason": "End-of-life PHP version (no security patches)"},
+    {"id": "int-imagemagick-old",         "regex": "ImageMagick/6\\.|ImageMagick 6\\.",
+     "reason": "ImageMagick 6.x — historically vulnerable (ImageTragick family)"},
+    {"id": "int-imagick-php",             "contains": "imagick",
+     "reason": "PHP imagick module — frequently the RCE pivot in image upload chains"},
+    {"id": "int-unrestricted-upload",     "regex": "(unrestricted|arbitrary)\\s+file\\s+upload",
+     "reason": "Unrestricted file upload (SECREP1 chain)"},
+    {"id": "int-symfony-2fa-bypass",      "contains": "no two-factor",
+     "reason": "Admin panel without 2FA / IP allowlist (SECREP1)"}
+  ]
+}

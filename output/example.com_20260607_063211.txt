@@ -1,0 +1,213 @@
+================================================================================
+HUNTERPY SECURITY SCAN REPORT
+================================================================================
+
+target: example.com
+mode: passive
+modules_run: ['ssl', 'dns', 'whois', 'headers', 'fingerprint', 'dorks', 'endpoints', 'js', 'surface', 'symfony', 'js_vulns']
+scan_id: 1
+start_time: 2026-06-07T06:32:08.096368Z
+duration: 0m 3s
+end_time: 2026-06-07T06:32:11.338226Z
+
+SUMMARY:
+  INTERESTING: 7
+  COMMON:      14
+  FALSE ALARM: 2
+
+
+============================================================
+INTERESTING (7 findings)
+============================================================
+
+[1] Weak key size: 256 bits
+    Module: ssl
+    Severity: HIGH
+    URL: https://example.com
+    Details: Key size 256 < recommended 2048
+    Reason: module flagged as interesting
+    Confidence: 85%
+
+[2] Dork suggestions: exposed_config (5 queries)
+    Module: dorks
+    Severity: HIGH
+    URL: https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22
+    Details: Configuration files exposing credentials. Open the URLs below in Google to review manually.
+    Reason: module flagged as interesting
+    Confidence: 85%
+
+[3] Dork suggestions: exposed_backups (3 queries)
+    Module: dorks
+    Severity: HIGH
+    URL: https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup
+    Details: Backup files left in the web root. Open the URLs below in Google to review manually.
+    Reason: backup file found alongside admin path
+    Confidence: 85%
+
+[4] Dork suggestions: exposed_databases (3 queries)
+    Module: dorks
+    Severity: CRITICAL
+    URL: https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22
+    Details: Exposed database dumps. Open the URLs below in Google to review manually.
+    Reason: module flagged as interesting
+    Confidence: 85%
+
+[5] Dork suggestions: cloud_storage (3 queries)
+    Module: dorks
+    Severity: HIGH
+    URL: https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com
+    Details: Exposed cloud-bucket references. Open the URLs below in Google to review manually.
+    Reason: module flagged as interesting
+    Confidence: 85%
+
+[6] Dork suggestions: code_leaks (3 queries)
+    Module: dorks
+    Severity: HIGH
+    URL: https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD
+    Details: Source code / repo exposure. Open the URLs below in Google to review manually.
+    Reason: module flagged as interesting
+    Confidence: 85%
+
+[7] Dork suggestions: symfony_exposure (8 queries)
+    Module: dorks
+    Severity: CRITICAL
+    URL: https://www.google.com/search?q=site%3Aexample.com+inurl%3A_profiler
+    Details: Symfony exposure patterns derived from SECREP1, SECREP2, and SECREP-symfony-upstream-issues reports.. Open the URLs below in Google to review manually.
+    Reason: module flagged as interesting
+    Confidence: 85%
+
+============================================================
+COMMON (14 findings)
+============================================================
+
+[1] Missing security header: Content Security Policy
+    Module: headers
+    Severity: HIGH
+    URL: https://example.com
+    Details: No CSP header — XSS attacks possible
+    Reason: known common type: missing_security_header
+    Confidence: 75%
+
+[2] Missing security header: HSTS
+    Module: headers
+    Severity: HIGH
+    URL: https://example.com
+    Details: Missing HSTS — HTTPS not enforced
+    Reason: known common type: missing_security_header
+    Confidence: 75%
+
+[3] Dork suggestions: login_pages (3 queries)
+    Module: dorks
+    Severity: MEDIUM
+    URL: https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin
+    Details: Admin / login interfaces. Open the URLs below in Google to review manually.
+    Reason: known common type: dork_suggestion
+    Confidence: 75%
+
+[4] Dork suggestions: wordpress (3 queries)
+    Module: dorks
+    Severity: MEDIUM
+    URL: https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin
+    Details: WordPress-specific exposure. Open the URLs below in Google to review manually.
+    Reason: known common type: dork_suggestion
+    Confidence: 75%
+
+[5] Missing security header: Clickjacking Protection
+    Module: headers
+    Severity: MEDIUM
+    URL: https://example.com
+    Details: Missing X-Frame-Options — clickjacking possible
+    Reason: known common type: missing_security_header
+    Confidence: 75%
+
+[6] Dork suggestions: exposed_documents (3 queries)
+    Module: dorks
+    Severity: MEDIUM
+    URL: https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential
+    Details: Confidential documents indexed publicly. Open the URLs below in Google to review manually.
+    Reason: known common type: dork_suggestion
+    Confidence: 75%
+
+[7] Dork suggestions: directory_listings (3 queries)
+    Module: dorks
+    Severity: MEDIUM
+    URL: https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22
+    Details: Open directory indexes. Open the URLs below in Google to review manually.
+    Reason: known common type: dork_suggestion
+    Confidence: 75%
+
+[8] Missing security header: MIME Sniffing Protection
+    Module: headers
+    Severity: LOW
+    URL: https://example.com
+    Details: Missing X-Content-Type-Options
+    Reason: known common type: missing_security_header
+    Confidence: 75%
+
+[9] Missing security header: XSS Protection (legacy)
+    Module: headers
+    Severity: LOW
+    URL: https://example.com
+    Details: Missing X-XSS-Protection
+    Reason: known common type: missing_security_header
+    Confidence: 75%
+
+[10] Missing security header: Referrer Policy
+    Module: headers
+    Severity: LOW
+    URL: https://example.com
+    Details: Missing Referrer-Policy
+    Reason: known common type: missing_security_header
+    Confidence: 75%
+
+[11] Missing security header: Permissions Policy
+    Module: headers
+    Severity: LOW
+    URL: https://example.com
+    Details: Missing Permissions-Policy
+    Reason: known common type: missing_security_header
+    Confidence: 75%
+
+[12] Information disclosure: server
+    Module: headers
+    Severity: LOW
+    URL: https://example.com
+    Details: Server version disclosed: cloudflare
+    Reason: known common type: info_disclosure_header
+    Confidence: 75%
+
+[13] Dork suggestions: api_docs (3 queries)
+    Module: dorks
+    Severity: LOW
+    URL: https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22
+    Details: Public API docs / Swagger UIs. Open the URLs below in Google to review manually.
+    Reason: known common type: dork_suggestion
+    Confidence: 75%
+
+[14] Dork suggestions: bug_bounty_program (3 queries)
+    Module: dorks
+    Severity: INFO
+    URL: https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22
+    Details: Public bug-bounty program for the target. Open the URLs below in Google to review manually.
+    Reason: known common type: dork_suggestion
+    Confidence: 75%
+
+============================================================
+FALSE ALARM (2 findings)
+============================================================
+
+[1] A record(s): 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3
+    Module: dns_enum
+    Severity: INFO
+    URL: example.com
+    Details: example.com resolves to 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3
+    Reason: low severity score: 0.5
+    Confidence: 60%
+
+[2] Technology fingerprint
+    Module: fingerprint
+    Severity: INFO
+    URL: https://example.com
+    Details: server=cloudflare
+    Reason: low severity score: 0.5
+    Confidence: 60%

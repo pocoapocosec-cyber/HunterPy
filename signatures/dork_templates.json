@@ -1,0 +1,121 @@
+{
+  "_description": "Google-dork templates used by modules/osint/dork_generator.py. Each template lists query patterns that get rendered against the scan target (substituting {target}/{site}). Adding a new template is just JSON + matching pattern in build_finding_for_dork() if needed.",
+
+  "templates": {
+    "exposed_config": {
+      "description": "Configuration files exposing credentials",
+      "severity": "high",
+      "queries": [
+        "site:{target} filetype:env \"DB_PASSWORD\"",
+        "site:{target} filetype:env",
+        "site:{target} filetype:yaml \"password\"",
+        "site:{target} filetype:ini \"database\"",
+        "site:{target} filetype:config \"connectionString\""
+      ]
+    },
+    "exposed_backups": {
+      "description": "Backup files left in the web root",
+      "severity": "high",
+      "queries": [
+        "site:{target} ext:bak OR ext:old OR ext:backup",
+        "site:{target} \"index of\" backup",
+        "site:{target} inurl:backup filetype:sql"
+      ]
+    },
+    "exposed_databases": {
+      "description": "Exposed database dumps",
+      "severity": "critical",
+      "queries": [
+        "site:{target} filetype:sql \"INSERT INTO\"",
+        "site:{target} filetype:db",
+        "site:{target} ext:mdb OR ext:sql OR ext:sqlite"
+      ]
+    },
+    "exposed_documents": {
+      "description": "Confidential documents indexed publicly",
+      "severity": "medium",
+      "queries": [
+        "site:{target} filetype:pdf confidential",
+        "site:{target} filetype:docx \"not for distribution\"",
+        "site:{target} filetype:xlsx financial OR budget"
+      ]
+    },
+    "login_pages": {
+      "description": "Admin / login interfaces",
+      "severity": "medium",
+      "queries": [
+        "site:{target} inurl:admin inurl:login",
+        "site:{target} intitle:\"login\" OR intitle:\"admin\"",
+        "site:{target} intitle:\"Dashboard\" inurl:admin"
+      ]
+    },
+    "api_docs": {
+      "description": "Public API docs / Swagger UIs",
+      "severity": "low",
+      "queries": [
+        "site:{target} intitle:\"api documentation\"",
+        "site:{target} inurl:swagger OR inurl:swagger-ui",
+        "site:{target} inurl:\"/api/v1\" OR inurl:\"/api/v2\""
+      ]
+    },
+    "directory_listings": {
+      "description": "Open directory indexes",
+      "severity": "medium",
+      "queries": [
+        "site:{target} intitle:\"index of /\"",
+        "site:{target} intitle:\"index of\" backup",
+        "site:{target} intitle:\"index of\" database"
+      ]
+    },
+    "wordpress": {
+      "description": "WordPress-specific exposure",
+      "severity": "medium",
+      "queries": [
+        "site:{target} inurl:wp-admin",
+        "site:{target} inurl:wp-content/uploads",
+        "site:{target} inurl:xmlrpc.php"
+      ]
+    },
+    "cloud_storage": {
+      "description": "Exposed cloud-bucket references",
+      "severity": "high",
+      "queries": [
+        "site:{target} site:s3.amazonaws.com",
+        "site:{target} site:storage.googleapis.com",
+        "site:{target} site:blob.core.windows.net"
+      ]
+    },
+    "code_leaks": {
+      "description": "Source code / repo exposure",
+      "severity": "high",
+      "queries": [
+        "site:{target} inurl:.git/HEAD",
+        "site:{target} inurl:.svn",
+        "site:{target} \"BEGIN RSA PRIVATE KEY\""
+      ]
+    },
+    "bug_bounty_program": {
+      "description": "Public bug-bounty program for the target",
+      "severity": "info",
+      "queries": [
+        "site:{target} \"bug bounty\" OR \"responsible disclosure\"",
+        "site:{target} inurl:security.txt",
+        "site:{target} \"submit vulnerability\""
+      ]
+    },
+    "symfony_exposure": {
+      "description": "Symfony exposure patterns derived from SECREP1, SECREP2, and SECREP-symfony-upstream-issues reports.",
+      "severity": "critical",
+      "queries": [
+        "site:{target} inurl:_profiler",
+        "site:{target} inurl:_wdt",
+        "site:{target} inurl:app_dev.php",
+        "site:{target} inurl:_profiler/phpinfo",
+        "site:{target} \"Symfony Profiler\"",
+        "site:{target} intext:\"X-Debug-Token\"",
+        "site:{target} inurl:_profiler/open file=",
+        "site:{target} ext:yml parameters database_password"
+      ]
+    }
+  }
+}

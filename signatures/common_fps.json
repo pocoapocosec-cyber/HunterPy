@@ -1,0 +1,34 @@
+{
+  "patterns": [
+    {
+      "id": "fp-cloudflare-generic",
+      "match": {"module": "nikto", "contains": "cloudflare"},
+      "weight": 0.8,
+      "reason": "Generic Cloudflare warning, not a vulnerability of the origin."
+    },
+    {
+      "id": "fp-default-ubuntu",
+      "match": {"module": "nikto", "contains": "default ubuntu"},
+      "weight": 0.7,
+      "reason": "Default OS welcome page."
+    },
+    {
+      "id": "fp-osvdb-3092",
+      "match": {"module": "nikto", "contains": "OSVDB-3092"},
+      "weight": 0.6,
+      "reason": "Generic 'might be interesting' Nikto check."
+    },
+    {
+      "id": "fp-wildcard-dns",
+      "match": {"module": "dns", "contains": "wildcard"},
+      "weight": 0.9,
+      "reason": "Wildcard DNS responses are not real subdomains."
+    },
+    {
+      "id": "fp-rate-limited",
+      "match": {"contains": "rate limit"},
+      "weight": 0.5,
+      "reason": "Rate-limited responses are inconclusive."
+    }
+  ]
+}

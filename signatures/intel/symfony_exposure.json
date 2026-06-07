@@ -1,0 +1,207 @@
+{
+  "_description": "Symfony exposure patterns derived from three real-world security reports (see docs/threat-intel/). Each `signal` is a passive probe; each `finding_type` becomes a HunterPy finding. The intent is that ANY new module can consume this JSON without code changes.",
+  "_sources": [
+    "docs/threat-intel/SECREP-murilocarapeba-clinic.pdf",
+    "docs/threat-intel/SECREP-symfony-edu.pdf",
+    "docs/threat-intel/SECREP-symfony-upstream-issues.pdf"
+  ],
+
+  "framework_fingerprints": {
+    "header_signatures": [
+      {"name": "x-debug-token",       "indicates": "symfony_debug_mode"},
+      {"name": "x-debug-token-link",  "indicates": "symfony_profiler_link"},
+      {"name": "x-symfony-cache",     "indicates": "symfony_httpcache"}
+    ],
+    "cookie_signatures": [
+      {"name": "MOCKSESSID",  "indicates": "symfony_test_env"},
+      {"name": "sf_redirect", "indicates": "symfony_session"}
+    ],
+    "body_signatures": [
+      "symfony/skeleton",
+      "Symfony Profiler",
+      "sfWebDebugToolbar",
+      "_wdt/",
+      "Whoops\\\\Run",
+      "Symfony\\\\Component"
+    ],
+    "path_signatures": [
+      "/_wdt/",
+      "/_profiler/",
+      "/_error/",
+      "/_fragment"
+    ]
+  },
+
+  "exposure_paths": [
+    {
+      "path": "/_profiler/",
+      "finding_type": "symfony_profiler_exposed",
+      "severity": "CRITICAL",
+      "title": "Symfony Profiler exposed in production",
+      "description": "The Symfony Debug Profiler is publicly reachable. Exposes environment variables (DATABASE_URL, APP_SECRET, OAuth secrets), session data, request parameters, and full server configuration. Source: SECREP1 + SECREP2.",
+      "match_status": [200, 301, 302],
+      "match_body_any": ["Symfony Profiler", "_wdt/", "sfWebDebugToolbar", "Profiler"]
+    },
+    {
+      "path": "/_profiler/phpinfo",
+      "finding_type": "symfony_profiler_phpinfo",
+      "severity": "CRITICAL",
+      "title": "Symfony Profiler exposes phpinfo()",
+      "description": "phpinfo() served via the profiler. Discloses PHP version (often EOL), loaded modules, INI settings, and every environment variable — including DATABASE_URL, APP_SECRET, OAUTH_AZURE_CLIENT_SECRET, API credentials. Source: SECREP2.",
+      "match_status": [200],
+      "match_body_any": ["PHP Version", "phpinfo()", "_ENV"]
+    },
+    {
+      "path": "/_profiler/open?file=config/packages/security.yaml&line=1",
+      "finding_type": "symfony_profiler_lfi",
+      "severity": "CRITICAL",
+      "title": "Symfony Profiler arbitrary file read",
+      "description": "/_profiler/open?file=… serves any file path the web user can read. Confirmed reachable by reading config/packages/security.yaml. From there an attacker can read .env, doctrine.yaml, services.yaml, and the entire src/ tree. Source: SECREP2.",
+      "match_status": [200],
+      "match_body_any": ["security:", "firewalls:", "providers:", "access_control:"]
+    },
+    {
+      "path": "/_profiler/search",
+      "finding_type": "symfony_profiler_search",
+      "severity": "HIGH",
+      "title": "Symfony Profiler search UI exposed",
+      "description": "Allows enumerating profiler tokens for every recorded request. Useful for replaying past requests including authenticated ones. Source: SECREP2.",
+      "match_status": [200],
+      "match_body_any": ["Profiler", "token"]
+    },
+    {
+      "path": "/app_dev.php",
+      "finding_type": "symfony_legacy_dev_front_controller",
+      "severity": "CRITICAL",
+      "title": "Symfony 1.x/2.x dev front controller reachable",
+      "description": "app_dev.php is the dev-mode front controller. Its presence in production almost always means the profiler + verbose errors are exposed and `?+--env=dev` / `?XDEBUG_SESSION_START` query tricks may apply. Source: SECREP-symfony-upstream-issues (Medium article).",
+      "match_status": [200, 500],
+      "match_body_any": ["Profiler", "Whoops", "Symfony"]
+    },
+    {
+      "path": "/app_dev.php/_profiler",
+      "finding_type": "symfony_legacy_profiler",
+      "severity": "CRITICAL",
+      "title": "Legacy Symfony profiler reachable via app_dev.php",
+      "description": "Mirror of the modern profiler exposure, available via the legacy front controller. Source: SECREP-symfony-upstream-issues.",
+      "match_status": [200],
+      "match_body_any": ["Symfony Profiler", "Profiler", "_wdt"]
+    },
+    {
+      "path": "/app_dev.php/_profiler/open?file=app/config/parameters.yml",
+      "finding_type": "symfony_legacy_parameters_yml",
+      "severity": "CRITICAL",
+      "title": "Legacy Symfony parameters.yml readable",
+      "description": "Reading parameters.yml typically leaks database credentials, the application secret token, and SMTP creds. Source: SECREP-symfony-upstream-issues.",
+      "match_status": [200],
+      "match_body_any": ["database_password", "secret:", "parameters:"]
+    },
+    {
+      "path": "/_fragment",
+      "finding_type": "symfony_fragment_endpoint",
+      "severity": "HIGH",
+      "title": "Symfony /_fragment endpoint reachable",
+      "description": "If FrameworkBundle's fragment listener is exposed without a properly-set fragment secret, this endpoint can be coerced into rendering arbitrary controllers with attacker-supplied arguments.",
+      "match_status": [200, 400, 403],
+      "match_body_any": ["fragment", "Symfony"]
+    }
+  ],
+
+  "query_string_tricks": [
+    {
+      "name": "app_env_injection",
+      "finding_type": "symfony_app_env_injection",
+      "severity": "HIGH",
+      "description": "Symfony Console's ArgvInput reads $_SERVER['argv']. A request like `?+--env=dev` injects an extra CLI argument that flips APP_ENV to dev, which in turn re-enables the profiler and verbose errors on the next request. Source: SECREP-symfony-upstream-issues (Symfony#XXXXX).",
+      "probe_query": "?+--env=dev",
+      "match_body_any": ["Profiler", "Whoops", "sfWebDebugToolbar"]
+    },
+    {
+      "name": "app_debug_injection",
+      "finding_type": "symfony_app_debug_injection",
+      "severity": "MEDIUM",
+      "description": "Same family as APP_ENV injection — `?+--no-debug` flips APP_DEBUG. Combined with --env=dev it forces dev+debug mode.",
+      "probe_query": "?+--no-debug",
+      "match_body_any": ["Symfony"]
+    }
+  ],
+
+  "credential_exposure_patterns": [
+    "APP_SECRET=", "DATABASE_URL=",
+    "OAUTH_AZURE_CLIENT_ID=", "OAUTH_AZURE_CLIENT_SECRET=",
+    "OAUTH_AZURE_TENANT=",
+    "API_AUTH_URL=", "API_AUTH_USERNAME=", "API_AUTH_PASSWORD=",
+    "ENT_AUTH_URL=", "ENT_AUTH_USERNAME=", "ENT_AUTH_PASSWORD=",
+    "database_password:", "secret:"
+  ],
+
+  "associated_cves": [
+    {
+      "cve":  "CVE-2024-50340",
+      "product": "symfony/runtime",
+      "version_lt": "5.4.46",
+      "cvss": 7.5,
+      "title": "Symfony APP_ENV / APP_DEBUG injection via Console runtime",
+      "summary": "Symfony's ArgvInput reads $_SERVER['argv'], allowing attackers to flip APP_ENV / APP_DEBUG via a crafted query string when the runtime component is misconfigured.",
+      "references": [
+        "https://github.com/symfony/symfony/security/advisories"
+      ]
+    },
+    {
+      "cve":  "GHSA-pv9j-c53q-h433",
+      "product": "symfony/symfony1",
+      "version_lt": "1.5.19",
+      "cvss": 7.3,
+      "title": "Symfony 1 gadget chain via sfNamespacedParameterHolder",
+      "summary": "If application code calls unserialize() on user input, the sfNamespacedParameterHolder + sfOutputEscaperArrayDecorator chain leads to RCE via call_user_func with shell_exec.",
+      "references": [
+        "https://github.com/FriendsOfSymfony1/symfony1/security/advisories/GHSA-pv9j-c53q-h433"
+      ]
+    },
+    {
+      "cve":  "CVE-2016-3714",
+      "product": "imagemagick",
+      "version_lt": "6.9.4-0",
+      "cvss": 8.4,
+      "title": "ImageTragick — shell injection via crafted image",
+      "summary": "Multiple coders in ImageMagick interpret SVG/MVG primitives that can shell out via crafted images. Often reachable from any web app that resizes user uploads via the imagick PHP extension. Source: SECREP1.",
+      "references": ["https://imagetragick.com/"]
+    },
+    {
+      "cve":  "CVE-2021-4219",
+      "product": "imagemagick",
+      "version_lt": "6.9.12-34",
+      "cvss": 6.5,
+      "title": "ImageMagick SVG parser hang / DoS",
+      "summary": "Malformed SVG processing causes infinite loop / DoS in ImageMagick. Source: SECREP1.",
+      "references": ["https://nvd.nist.gov/vuln/detail/CVE-2021-4219"]
+    },
+    {
+      "cve":  "PHP-EOL",
+      "product": "php",
+      "version_lt": "7.4.0",
+      "cvss": 9.0,
+      "title": "End-of-life PHP version still in production",
+      "summary": "PHP 5.x and PHP 7.0-7.3 are EOL — no security patches. Combined with `disable_functions` left empty (exec, system, shell_exec, passthru, proc_open, popen, curl_exec) this is a trivial RCE pivot point. Source: SECREP1.",
+      "references": ["https://www.php.net/eol.php"]
+    }
+  ],
+
+  "attack_chain_recipe": {
+    "name": "symfony_full_pwnage",
+    "description": "Reproducible chain observed across all three reports.",
+    "ordered_steps": [
+      "1. Fingerprint: x-debug-token / x-debug-token-link header OR Symfony body markers.",
+      "2. Hit /_profiler/  → confirm exposure.",
+      "3. Hit /_profiler/phpinfo  → harvest env vars (APP_SECRET, DATABASE_URL, OAuth secrets).",
+      "4. Hit /_profiler/open?file=config/packages/security.yaml  → enumerate firewall + access_control.",
+      "5. Map routes via /_profiler router panel  → locate /admin/* with broken access_control.",
+      "6. Pivot: use exposed DB creds, OR exploit any file-upload endpoint surfaced (`institutional[image]`, `blog[image]`)."
+    ],
+    "predicates_for_context_graph": [
+      {"any_type": ["symfony_profiler_exposed", "symfony_profiler_phpinfo"]},
+      {"any_type": ["symfony_profiler_lfi", "symfony_legacy_parameters_yml",
+                    "symfony_legacy_profiler"]}
+    ]
+  }
+}

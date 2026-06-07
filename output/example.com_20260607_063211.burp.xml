@@ -1,0 +1,724 @@
+<?xml version="1.0"?>
+<!DOCTYPE issues [
+  <!ELEMENT issues (issue*)>
+  <!ATTLIST issues burpVersion CDATA "">
+  <!ATTLIST issues exportTime CDATA "">
+]>
+<issues burpVersion="2024.10" exportTime="Sun Jun 07 06:32:11 UTC 2026">
+<issue><serialNumber>1</serialNumber><type>0x08EF816A</type><name>Weak key size: 256 bits</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [ssl]]]></location><severity>High</severity><confidence>Firm</confidence><issueBackground><![CDATA[Classifier rationale: module flagged as interesting]]></issueBackground><remediationBackground><![CDATA[N/A — verify finding first.]]></remediationBackground><issueDetail><![CDATA[Key size 256 < recommended 2048
+
+Verification steps:
+  1. Reproduce the request that produced this finding.
+  2. Confirm the observation is consistent across retries.
+  3. Determine whether it is a real issue or a benign artifact.
+
+Sample command:
+  curl -sI https://example.com]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: ssl
+Original type:   weak_key_size
+]]></response></requestresponse></issue>
+<issue><serialNumber>2</serialNumber><type>0x08A534CF</type><name>A record(s): 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3</name><host>example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [dns_enum]]]></location><severity>Information</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: low severity score: 0.5]]></issueBackground><remediationBackground><![CDATA[N/A — verify finding first.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  records: ['104.20.23.154', '172.66.147.243', '2606:4700:10::6814:179a', '2606:4700:10::ac42:93f3']
+
+example.com resolves to 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3
+
+Verification steps:
+  1. Reproduce the request that produced this finding.
+  2. Confirm the observation is consistent across retries.
+  3. Determine whether it is a real issue or a benign artifact.
+
+Sample command:
+  curl -sI example.com]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET example.com HTTP/1.1
+Host: example
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dns_enum
+Original type:   dns_a
+]]></response></requestresponse></issue>
+<issue><serialNumber>3</serialNumber><type>0x0890BD79</type><name>Missing security header: Content Security Policy</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>High</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: missing_security_header]]></issueBackground><remediationBackground><![CDATA[Add a strict Content-Security-Policy. Start with default-src 'self' and tighten from there.]]></remediationBackground><issueDetail><![CDATA[The content-security-policy header is absent on this response.
+
+Verification steps:
+  1. Re-fetch the page and grep the headers:
+     curl -sI https://example.com | grep -i 'content-security-policy'
+  2. If the header truly never appears across any sample page, this is a real gap, not a one-off.
+
+Sample command:
+  curl -sI https://example.com
+
+References:
+  - https://owasp.org/www-project-secure-headers/]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   missing_security_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>4</serialNumber><type>0x0890BD79</type><name>Missing security header: Clickjacking Protection</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>Medium</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: missing_security_header]]></issueBackground><remediationBackground><![CDATA[Send `X-Frame-Options: SAMEORIGIN` (or use CSP frame-ancestors).]]></remediationBackground><issueDetail><![CDATA[The x-frame-options header is absent on this response.
+
+Verification steps:
+  1. Re-fetch the page and grep the headers:
+     curl -sI https://example.com | grep -i 'x-frame-options'
+  2. If the header truly never appears across any sample page, this is a real gap, not a one-off.
+
+Sample command:
+  curl -sI https://example.com
+
+References:
+  - https://owasp.org/www-project-secure-headers/]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   missing_security_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>5</serialNumber><type>0x0890BD79</type><name>Missing security header: MIME Sniffing Protection</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>Low</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: missing_security_header]]></issueBackground><remediationBackground><![CDATA[Send `X-Content-Type-Options: nosniff` on every response.]]></remediationBackground><issueDetail><![CDATA[The x-content-type-options header is absent on this response.
+
+Verification steps:
+  1. Re-fetch the page and grep the headers:
+     curl -sI https://example.com | grep -i 'x-content-type-options'
+  2. If the header truly never appears across any sample page, this is a real gap, not a one-off.
+
+Sample command:
+  curl -sI https://example.com
+
+References:
+  - https://owasp.org/www-project-secure-headers/]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   missing_security_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>6</serialNumber><type>0x0890BD79</type><name>Missing security header: HSTS</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>High</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: missing_security_header]]></issueBackground><remediationBackground><![CDATA[Send `Strict-Transport-Security: max-age=31536000; includeSubDomains` on HTTPS responses, then submit the domain to the HSTS preload list.]]></remediationBackground><issueDetail><![CDATA[The strict-transport-security header is absent on this response.
+
+Verification steps:
+  1. Re-fetch the page and grep the headers:
+     curl -sI https://example.com | grep -i 'strict-transport-security'
+  2. If the header truly never appears across any sample page, this is a real gap, not a one-off.
+
+Sample command:
+  curl -sI https://example.com
+
+References:
+  - https://owasp.org/www-project-secure-headers/]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   missing_security_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>7</serialNumber><type>0x0890BD79</type><name>Missing security header: XSS Protection (legacy)</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>Low</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: missing_security_header]]></issueBackground><remediationBackground><![CDATA[Set the x-xss-protection response header per OWASP guidance.]]></remediationBackground><issueDetail><![CDATA[The x-xss-protection header is absent on this response.
+
+Verification steps:
+  1. Re-fetch the page and grep the headers:
+     curl -sI https://example.com | grep -i 'x-xss-protection'
+  2. If the header truly never appears across any sample page, this is a real gap, not a one-off.
+
+Sample command:
+  curl -sI https://example.com
+
+References:
+  - https://owasp.org/www-project-secure-headers/]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   missing_security_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>8</serialNumber><type>0x0890BD79</type><name>Missing security header: Referrer Policy</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>Low</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: missing_security_header]]></issueBackground><remediationBackground><![CDATA[Send `Referrer-Policy: strict-origin-when-cross-origin`.]]></remediationBackground><issueDetail><![CDATA[The referrer-policy header is absent on this response.
+
+Verification steps:
+  1. Re-fetch the page and grep the headers:
+     curl -sI https://example.com | grep -i 'referrer-policy'
+  2. If the header truly never appears across any sample page, this is a real gap, not a one-off.
+
+Sample command:
+  curl -sI https://example.com
+
+References:
+  - https://owasp.org/www-project-secure-headers/]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   missing_security_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>9</serialNumber><type>0x0890BD79</type><name>Missing security header: Permissions Policy</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>Low</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: missing_security_header]]></issueBackground><remediationBackground><![CDATA[Send a `Permissions-Policy` header explicitly disabling features your app doesn't need.]]></remediationBackground><issueDetail><![CDATA[The permissions-policy header is absent on this response.
+
+Verification steps:
+  1. Re-fetch the page and grep the headers:
+     curl -sI https://example.com | grep -i 'permissions-policy'
+  2. If the header truly never appears across any sample page, this is a real gap, not a one-off.
+
+Sample command:
+  curl -sI https://example.com
+
+References:
+  - https://owasp.org/www-project-secure-headers/]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   missing_security_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>10</serialNumber><type>0x080BFE10</type><name>Information disclosure: server</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [headers]]]></location><severity>Low</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: info_disclosure_header]]></issueBackground><remediationBackground><![CDATA[N/A — verify finding first.]]></remediationBackground><issueDetail><![CDATA[Server version disclosed: cloudflare
+
+Verification steps:
+  1. Reproduce the request that produced this finding.
+  2. Confirm the observation is consistent across retries.
+  3. Determine whether it is a real issue or a benign artifact.
+
+Sample command:
+  curl -sI https://example.com]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: headers
+Original type:   info_disclosure_header
+]]></response></requestresponse></issue>
+<issue><serialNumber>11</serialNumber><type>0x08DF63CE</type><name>Technology fingerprint</name><host>https://example.com</host><path><![CDATA[/]]></path><location><![CDATA[/ [fingerprint]]]></location><severity>Information</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: low severity score: 0.5]]></issueBackground><remediationBackground><![CDATA[N/A — verify finding first.]]></remediationBackground><issueDetail><![CDATA[server=cloudflare
+
+Verification steps:
+  1. Reproduce the request that produced this finding.
+  2. Confirm the observation is consistent across retries.
+  3. Determine whether it is a real issue or a benign artifact.
+
+Sample command:
+  curl -sI https://example.com]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET / HTTP/1.1
+Host: example.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: fingerprint
+Original type:   tech_fingerprint
+]]></response></requestresponse></issue>
+<issue><serialNumber>12</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: exposed_config (5 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22]]></path><location><![CDATA[/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22 [dorks]]]></location><severity>High</severity><confidence>Firm</confidence><issueBackground><![CDATA[Classifier rationale: module flagged as interesting]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: exposed_config
+  description: Configuration files exposing credentials
+  queries: ['site:example.com filetype:env "DB_PASSWORD"', 'site:example.com filetype:env', 'site:example.com filetype:yaml "password"', 'site:example.com filetype:ini "database"', 'site:example.com filetype:config "connectionString"']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22', 'https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv', 'https://www.google.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22', 'https://www.google.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22', 'https://www.google.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22', 'https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aenv', 'https://www.bing.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22', 'https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22', 'https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22', 'https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aenv', 'https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Ayaml+%22password%22', 'https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aini+%22database%22', 'https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'exposed_config'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com filetype:env "DB_PASSWORD"
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22 HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>13</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: exposed_backups (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup]]></path><location><![CDATA[/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup [dorks]]]></location><severity>High</severity><confidence>Firm</confidence><issueBackground><![CDATA[Classifier rationale: backup file found alongside admin path]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: exposed_backups
+  description: Backup files left in the web root
+  queries: ['site:example.com ext:bak OR ext:old OR ext:backup', 'site:example.com "index of" backup', 'site:example.com inurl:backup filetype:sql']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup', 'https://www.google.com/search?q=site%3Aexample.com+%22index+of%22+backup', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup', 'https://www.bing.com/search?q=site%3Aexample.com+%22index+of%22+backup', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup', 'https://duckduckgo.com/?q=site%3Aexample.com+%22index+of%22+backup', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'exposed_backups'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup
+     • https://www.google.com/search?q=site%3Aexample.com+%22index+of%22+backup
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com ext:bak OR ext:old OR ext:backup
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>14</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: exposed_databases (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22]]></path><location><![CDATA[/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22 [dorks]]]></location><severity>High</severity><confidence>Firm</confidence><issueBackground><![CDATA[Classifier rationale: module flagged as interesting]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: exposed_databases
+  description: Exposed database dumps
+  queries: ['site:example.com filetype:sql "INSERT INTO"', 'site:example.com filetype:db', 'site:example.com ext:mdb OR ext:sql OR ext:sqlite']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22', 'https://www.google.com/search?q=site%3Aexample.com+filetype%3Adb', 'https://www.google.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22', 'https://www.bing.com/search?q=site%3Aexample.com+filetype%3Adb', 'https://www.bing.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22', 'https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Adb', 'https://duckduckgo.com/?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'exposed_databases'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Adb
+     • https://www.google.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com filetype:sql "INSERT INTO"
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22 HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>15</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: exposed_documents (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+filetype%3Apdf+confidential]]></path><location><![CDATA[/search?q=site%3Aexample.com+filetype%3Apdf+confidential [dorks]]]></location><severity>Medium</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: dork_suggestion]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: exposed_documents
+  description: Confidential documents indexed publicly
+  queries: ['site:example.com filetype:pdf confidential', 'site:example.com filetype:docx "not for distribution"', 'site:example.com filetype:xlsx financial OR budget']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential', 'https://www.google.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22', 'https://www.google.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential', 'https://www.bing.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22', 'https://www.bing.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Apdf+confidential', 'https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22', 'https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'exposed_documents'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22
+     • https://www.google.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com filetype:pdf confidential
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+filetype%3Apdf+confidential HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>16</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: login_pages (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin]]></path><location><![CDATA[/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin [dorks]]]></location><severity>Medium</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: dork_suggestion]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: login_pages
+  description: Admin / login interfaces
+  queries: ['site:example.com inurl:admin inurl:login', 'site:example.com intitle:"login" OR intitle:"admin"', 'site:example.com intitle:"Dashboard" inurl:admin']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin', 'https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22', 'https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin', 'https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22', 'https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin', 'https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22', 'https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'login_pages'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin
+     • https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22
+     • https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com inurl:admin inurl:login
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>17</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: api_docs (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22]]></path><location><![CDATA[/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22 [dorks]]]></location><severity>Low</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: dork_suggestion]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: api_docs
+  description: Public API docs / Swagger UIs
+  queries: ['site:example.com intitle:"api documentation"', 'site:example.com inurl:swagger OR inurl:swagger-ui', 'site:example.com inurl:"/api/v1" OR inurl:"/api/v2"']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22api+documentation%22', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'api_docs'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com intitle:"api documentation"
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+intitle%3A%22api+documentation%22 HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>18</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: directory_listings (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22]]></path><location><![CDATA[/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22 [dorks]]]></location><severity>Medium</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: dork_suggestion]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: directory_listings
+  description: Open directory indexes
+  queries: ['site:example.com intitle:"index of /"', 'site:example.com intitle:"index of" backup', 'site:example.com intitle:"index of" database']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22', 'https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup', 'https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22', 'https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup', 'https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22', 'https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of%22+backup', 'https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of%22+database']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'directory_listings'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22
+     • https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup
+     • https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com intitle:"index of /"
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22 HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>19</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: wordpress (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+inurl%3Awp-admin]]></path><location><![CDATA[/search?q=site%3Aexample.com+inurl%3Awp-admin [dorks]]]></location><severity>Medium</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: dork_suggestion]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: wordpress
+  description: WordPress-specific exposure
+  queries: ['site:example.com inurl:wp-admin', 'site:example.com inurl:wp-content/uploads', 'site:example.com inurl:xmlrpc.php']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+inurl%3Awp-admin', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Awp-admin', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Axmlrpc.php']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'wordpress'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com inurl:wp-admin
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+inurl%3Awp-admin HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>20</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: cloud_storage (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+site%3As3.amazonaws.com]]></path><location><![CDATA[/search?q=site%3Aexample.com+site%3As3.amazonaws.com [dorks]]]></location><severity>High</severity><confidence>Firm</confidence><issueBackground><![CDATA[Classifier rationale: module flagged as interesting]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: cloud_storage
+  description: Exposed cloud-bucket references
+  queries: ['site:example.com site:s3.amazonaws.com', 'site:example.com site:storage.googleapis.com', 'site:example.com site:blob.core.windows.net']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com', 'https://www.google.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com', 'https://www.google.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com', 'https://www.bing.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com', 'https://www.bing.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+site%3As3.amazonaws.com', 'https://duckduckgo.com/?q=site%3Aexample.com+site%3Astorage.googleapis.com', 'https://duckduckgo.com/?q=site%3Aexample.com+site%3Ablob.core.windows.net']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'cloud_storage'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com
+     • https://www.google.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com
+     • https://www.google.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com site:s3.amazonaws.com
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+site%3As3.amazonaws.com HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>21</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: code_leaks (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD]]></path><location><![CDATA[/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD [dorks]]]></location><severity>High</severity><confidence>Firm</confidence><issueBackground><![CDATA[Classifier rationale: module flagged as interesting]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: code_leaks
+  description: Source code / repo exposure
+  queries: ['site:example.com inurl:.git/HEAD', 'site:example.com inurl:.svn', 'site:example.com "BEGIN RSA PRIVATE KEY"']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3A.svn', 'https://www.google.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3A.svn', 'https://www.bing.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A.git%2FHEAD', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A.svn', 'https://duckduckgo.com/?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'code_leaks'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3A.svn
+     • https://www.google.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com inurl:.git/HEAD
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+inurl%3A.git%2FHEAD HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>22</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: bug_bounty_program (3 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22]]></path><location><![CDATA[/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22 [dorks]]]></location><severity>Information</severity><confidence>Tentative</confidence><issueBackground><![CDATA[Classifier rationale: known common type: dork_suggestion]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: bug_bounty_program
+  description: Public bug-bounty program for the target
+  queries: ['site:example.com "bug bounty" OR "responsible disclosure"', 'site:example.com inurl:security.txt', 'site:example.com "submit vulnerability"']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt', 'https://www.google.com/search?q=site%3Aexample.com+%22submit+vulnerability%22']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt', 'https://www.bing.com/search?q=site%3Aexample.com+%22submit+vulnerability%22']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Asecurity.txt', 'https://duckduckgo.com/?q=site%3Aexample.com+%22submit+vulnerability%22']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'bug_bounty_program'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt
+     • https://www.google.com/search?q=site%3Aexample.com+%22submit+vulnerability%22
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com "bug bounty" OR "responsible disclosure"
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22 HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+<issue><serialNumber>23</serialNumber><type>0x081C6AD7</type><name>Dork suggestions: symfony_exposure (8 queries)</name><host>https://www.google.com</host><path><![CDATA[/search?q=site%3Aexample.com+inurl%3A_profiler]]></path><location><![CDATA[/search?q=site%3Aexample.com+inurl%3A_profiler [dorks]]]></location><severity>High</severity><confidence>Firm</confidence><issueBackground><![CDATA[Classifier rationale: module flagged as interesting]]></issueBackground><remediationBackground><![CDATA[Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.]]></remediationBackground><issueDetail><![CDATA[Evidence:
+  template: symfony_exposure
+  description: Symfony exposure patterns derived from SECREP1, SECREP2, and SECREP-symfony-upstream-issues reports.
+  queries: ['site:example.com inurl:_profiler', 'site:example.com inurl:_wdt', 'site:example.com inurl:app_dev.php', 'site:example.com inurl:_profiler/phpinfo', 'site:example.com "Symfony Profiler"', 'site:example.com intext:"X-Debug-Token"', 'site:example.com inurl:_profiler/open file=', 'site:example.com ext:yml parameters database_password']
+  google_urls: ['https://www.google.com/search?q=site%3Aexample.com+inurl%3A_profiler', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3A_wdt', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3Aapp_dev.php', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3A_profiler%2Fphpinfo', 'https://www.google.com/search?q=site%3Aexample.com+%22Symfony+Profiler%22', 'https://www.google.com/search?q=site%3Aexample.com+intext%3A%22X-Debug-Token%22', 'https://www.google.com/search?q=site%3Aexample.com+inurl%3A_profiler%2Fopen+file%3D', 'https://www.google.com/search?q=site%3Aexample.com+ext%3Ayml+parameters+database_password']
+  bing_urls: ['https://www.bing.com/search?q=site%3Aexample.com+inurl%3A_profiler', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3A_wdt', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3Aapp_dev.php', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3A_profiler%2Fphpinfo', 'https://www.bing.com/search?q=site%3Aexample.com+%22Symfony+Profiler%22', 'https://www.bing.com/search?q=site%3Aexample.com+intext%3A%22X-Debug-Token%22', 'https://www.bing.com/search?q=site%3Aexample.com+inurl%3A_profiler%2Fopen+file%3D', 'https://www.bing.com/search?q=site%3Aexample.com+ext%3Ayml+parameters+database_password']
+  ddg_urls: ['https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A_profiler', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A_wdt', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Aapp_dev.php', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A_profiler%2Fphpinfo', 'https://duckduckgo.com/?q=site%3Aexample.com+%22Symfony+Profiler%22', 'https://duckduckgo.com/?q=site%3Aexample.com+intext%3A%22X-Debug-Token%22', 'https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A_profiler%2Fopen+file%3D', 'https://duckduckgo.com/?q=site%3Aexample.com+ext%3Ayml+parameters+database_password']
+  mode: preview
+
+Auto-generated dorks for this target. The tool did not query Google — you must review manually.
+
+Verification steps:
+  1. These dorks were generated for template 'symfony_exposure'. They were NOT executed — Google scraping is off by default.
+  2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3A_profiler
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3A_wdt
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3Aapp_dev.php
+     • https://www.google.com/search?q=site%3Aexample.com+inurl%3A_profiler%2Fphpinfo
+     • https://www.google.com/search?q=site%3Aexample.com+%22Symfony+Profiler%22
+     • … and 3 more (see evidence.google_urls).
+  3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate.
+
+Sample command:
+  # Sample query (paste into Google):
+site:example.com inurl:_profiler
+
+References:
+  - https://www.exploit-db.com/google-hacking-database
+  - https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage]]></issueDetail><requestresponse><request method="GET" base64="false"><![CDATA[GET /search?q=site%3Aexample.com+inurl%3A_profiler HTTP/1.1
+Host: www.google.com
+User-Agent: HunterPy/2.0 (synthetic; for triage only)
+Accept: */*
+
+]]></request><response base64="false"><![CDATA[HTTP/1.1 200 OK
+Content-Type: text/plain
+
+[HunterPy synthetic placeholder]
+This issue was imported from a HunterPy scan.
+Original module: dorks
+Original type:   dork_suggestion
+]]></response></requestresponse></issue>
+</issues>

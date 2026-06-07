@@ -1,0 +1,1784 @@
+{
+  "meta": {
+    "target": "example.com",
+    "mode": "passive",
+    "modules_run": [
+      "ssl",
+      "fingerprint",
+      "whois",
+      "dns",
+      "headers",
+      "dorks",
+      "endpoints",
+      "js",
+      "surface",
+      "js_vulns"
+    ],
+    "scan_id": 1,
+    "start_time": "2026-06-07T04:59:04.350112Z",
+    "duration": "0m 1s",
+    "end_time": "2026-06-07T04:59:05.369014Z",
+    "scan_timestamp": "2026-06-07T04:59:05.372329Z",
+    "tool_name": "HunterPy",
+    "tool_version": "2.0.0"
+  },
+  "summary": {
+    "total": 22,
+    "interesting": 6,
+    "common": 14,
+    "false_alarms": 2
+  },
+  "technology": {
+    "headers": {
+      "date": "Sun, 07 Jun 2026 04:59:04 GMT",
+      "content-type": "text/html",
+      "transfer-encoding": "chunked",
+      "connection": "keep-alive",
+      "server": "cloudflare",
+      "last-modified": "Fri, 05 Jun 2026 20:00:44 GMT",
+      "allow": "GET, HEAD",
+      "age": "3524",
+      "cf-cache-status": "HIT",
+      "content-encoding": "gzip",
+      "cf-ray": "a07d15db5f8f769a-SEA"
+    },
+    "technologies": []
+  },
+  "headers": {
+    "date": "Sun, 07 Jun 2026 04:59:04 GMT",
+    "content-type": "text/html",
+    "transfer-encoding": "chunked",
+    "connection": "keep-alive",
+    "server": "cloudflare",
+    "last-modified": "Fri, 05 Jun 2026 20:00:44 GMT",
+    "allow": "GET, HEAD",
+    "age": "3524",
+    "cf-cache-status": "HIT",
+    "content-encoding": "gzip",
+    "cf-ray": "a07d15db5f8f769a-SEA"
+  },
+  "cookies": [],
+  "dns": {
+    "a": [
+      "104.20.23.154",
+      "172.66.147.243",
+      "2606:4700:10::6814:179a",
+      "2606:4700:10::ac42:93f3"
+    ],
+    "mx": [],
+    "ns": [],
+    "txt": [],
+    "cname": null
+  },
+  "whois": {},
+  "surface": {
+    "internal_links": [],
+    "external_links": [
+      "https://iana.org/domains/example"
+    ],
+    "subdomains": [],
+    "forms": [],
+    "url_params": [],
+    "sensitive_paths": [
+      {
+        "url": "https://example.com/robots.txt",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/sitemap.xml",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/.env",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/.git/HEAD",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/backup/",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/admin/",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/phpinfo.php",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/.htaccess",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/wp-config.php",
+        "status_code": 404,
+        "has_content": true
+      },
+      {
+        "url": "https://example.com/config.php",
+        "status_code": 404,
+        "has_content": true
+      }
+    ]
+  },
+  "javascript": {
+    "first_party_scripts": [],
+    "third_party_scripts": [],
+    "sensitive_keyword_hits": [],
+    "endpoints": []
+  },
+  "dorks": {
+    "target": "example.com",
+    "count": 35,
+    "dorks": [
+      {
+        "template": "exposed_config",
+        "description": "Configuration files exposing credentials",
+        "severity": "high",
+        "query": "site:example.com filetype:env \"DB_PASSWORD\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22"
+      },
+      {
+        "template": "exposed_config",
+        "description": "Configuration files exposing credentials",
+        "severity": "high",
+        "query": "site:example.com filetype:env",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aenv",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aenv"
+      },
+      {
+        "template": "exposed_config",
+        "description": "Configuration files exposing credentials",
+        "severity": "high",
+        "query": "site:example.com filetype:yaml \"password\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Ayaml+%22password%22"
+      },
+      {
+        "template": "exposed_config",
+        "description": "Configuration files exposing credentials",
+        "severity": "high",
+        "query": "site:example.com filetype:ini \"database\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aini+%22database%22"
+      },
+      {
+        "template": "exposed_config",
+        "description": "Configuration files exposing credentials",
+        "severity": "high",
+        "query": "site:example.com filetype:config \"connectionString\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22"
+      },
+      {
+        "template": "exposed_backups",
+        "description": "Backup files left in the web root",
+        "severity": "high",
+        "query": "site:example.com ext:bak OR ext:old OR ext:backup",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup"
+      },
+      {
+        "template": "exposed_backups",
+        "description": "Backup files left in the web root",
+        "severity": "high",
+        "query": "site:example.com \"index of\" backup",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+%22index+of%22+backup",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+%22index+of%22+backup",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+%22index+of%22+backup"
+      },
+      {
+        "template": "exposed_backups",
+        "description": "Backup files left in the web root",
+        "severity": "high",
+        "query": "site:example.com inurl:backup filetype:sql",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql"
+      },
+      {
+        "template": "exposed_databases",
+        "description": "Exposed database dumps",
+        "severity": "critical",
+        "query": "site:example.com filetype:sql \"INSERT INTO\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22"
+      },
+      {
+        "template": "exposed_databases",
+        "description": "Exposed database dumps",
+        "severity": "critical",
+        "query": "site:example.com filetype:db",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Adb",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Adb",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Adb"
+      },
+      {
+        "template": "exposed_databases",
+        "description": "Exposed database dumps",
+        "severity": "critical",
+        "query": "site:example.com ext:mdb OR ext:sql OR ext:sqlite",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite"
+      },
+      {
+        "template": "exposed_documents",
+        "description": "Confidential documents indexed publicly",
+        "severity": "medium",
+        "query": "site:example.com filetype:pdf confidential",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Apdf+confidential"
+      },
+      {
+        "template": "exposed_documents",
+        "description": "Confidential documents indexed publicly",
+        "severity": "medium",
+        "query": "site:example.com filetype:docx \"not for distribution\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22"
+      },
+      {
+        "template": "exposed_documents",
+        "description": "Confidential documents indexed publicly",
+        "severity": "medium",
+        "query": "site:example.com filetype:xlsx financial OR budget",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget"
+      },
+      {
+        "template": "login_pages",
+        "description": "Admin / login interfaces",
+        "severity": "medium",
+        "query": "site:example.com inurl:admin inurl:login",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin"
+      },
+      {
+        "template": "login_pages",
+        "description": "Admin / login interfaces",
+        "severity": "medium",
+        "query": "site:example.com intitle:\"login\" OR intitle:\"admin\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22"
+      },
+      {
+        "template": "login_pages",
+        "description": "Admin / login interfaces",
+        "severity": "medium",
+        "query": "site:example.com intitle:\"Dashboard\" inurl:admin",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin"
+      },
+      {
+        "template": "api_docs",
+        "description": "Public API docs / Swagger UIs",
+        "severity": "low",
+        "query": "site:example.com intitle:\"api documentation\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22api+documentation%22"
+      },
+      {
+        "template": "api_docs",
+        "description": "Public API docs / Swagger UIs",
+        "severity": "low",
+        "query": "site:example.com inurl:swagger OR inurl:swagger-ui",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui"
+      },
+      {
+        "template": "api_docs",
+        "description": "Public API docs / Swagger UIs",
+        "severity": "low",
+        "query": "site:example.com inurl:\"/api/v1\" OR inurl:\"/api/v2\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22"
+      },
+      {
+        "template": "directory_listings",
+        "description": "Open directory indexes",
+        "severity": "medium",
+        "query": "site:example.com intitle:\"index of /\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22"
+      },
+      {
+        "template": "directory_listings",
+        "description": "Open directory indexes",
+        "severity": "medium",
+        "query": "site:example.com intitle:\"index of\" backup",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of%22+backup"
+      },
+      {
+        "template": "directory_listings",
+        "description": "Open directory indexes",
+        "severity": "medium",
+        "query": "site:example.com intitle:\"index of\" database",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of%22+database"
+      },
+      {
+        "template": "wordpress",
+        "description": "WordPress-specific exposure",
+        "severity": "medium",
+        "query": "site:example.com inurl:wp-admin",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Awp-admin",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Awp-admin"
+      },
+      {
+        "template": "wordpress",
+        "description": "WordPress-specific exposure",
+        "severity": "medium",
+        "query": "site:example.com inurl:wp-content/uploads",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads"
+      },
+      {
+        "template": "wordpress",
+        "description": "WordPress-specific exposure",
+        "severity": "medium",
+        "query": "site:example.com inurl:xmlrpc.php",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Axmlrpc.php"
+      },
+      {
+        "template": "cloud_storage",
+        "description": "Exposed cloud-bucket references",
+        "severity": "high",
+        "query": "site:example.com site:s3.amazonaws.com",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+site%3As3.amazonaws.com"
+      },
+      {
+        "template": "cloud_storage",
+        "description": "Exposed cloud-bucket references",
+        "severity": "high",
+        "query": "site:example.com site:storage.googleapis.com",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+site%3Astorage.googleapis.com"
+      },
+      {
+        "template": "cloud_storage",
+        "description": "Exposed cloud-bucket references",
+        "severity": "high",
+        "query": "site:example.com site:blob.core.windows.net",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+site%3Ablob.core.windows.net"
+      },
+      {
+        "template": "code_leaks",
+        "description": "Source code / repo exposure",
+        "severity": "high",
+        "query": "site:example.com inurl:.git/HEAD",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A.git%2FHEAD"
+      },
+      {
+        "template": "code_leaks",
+        "description": "Source code / repo exposure",
+        "severity": "high",
+        "query": "site:example.com inurl:.svn",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3A.svn",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3A.svn",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A.svn"
+      },
+      {
+        "template": "code_leaks",
+        "description": "Source code / repo exposure",
+        "severity": "high",
+        "query": "site:example.com \"BEGIN RSA PRIVATE KEY\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22"
+      },
+      {
+        "template": "bug_bounty_program",
+        "description": "Public bug-bounty program for the target",
+        "severity": "info",
+        "query": "site:example.com \"bug bounty\" OR \"responsible disclosure\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22"
+      },
+      {
+        "template": "bug_bounty_program",
+        "description": "Public bug-bounty program for the target",
+        "severity": "info",
+        "query": "site:example.com inurl:security.txt",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Asecurity.txt"
+      },
+      {
+        "template": "bug_bounty_program",
+        "description": "Public bug-bounty program for the target",
+        "severity": "info",
+        "query": "site:example.com \"submit vulnerability\"",
+        "google_url": "https://www.google.com/search?q=site%3Aexample.com+%22submit+vulnerability%22",
+        "bing_url": "https://www.bing.com/search?q=site%3Aexample.com+%22submit+vulnerability%22",
+        "ddg_url": "https://duckduckgo.com/?q=site%3Aexample.com+%22submit+vulnerability%22"
+      }
+    ]
+  },
+  "baseline": {
+    "samples": 8,
+    "status_distribution": {
+      "200": 1,
+      "404": 7
+    },
+    "length_mean": 528.0,
+    "length_stdev": 0.0,
+    "length_p95": 528,
+    "latency_mean_ms": 56.0369942499932,
+    "latency_stdev_ms": 11.832448604282156,
+    "common_404_bodies": [
+      528
+    ],
+    "server_header": "cloudflare",
+    "waf_signature": null
+  },
+  "attack_chains": [],
+  "pocs": {
+    "ssl|weak_key_size|https://example.com|Weak key size: 256 bits": {
+      "title": "Weak key size: 256 bits",
+      "finding_type": "weak_key_size",
+      "description": "Key size 256 < recommended 2048",
+      "steps": [
+        "1. Reproduce the request that produced this finding.",
+        "2. Confirm the observation is consistent across retries.",
+        "3. Determine whether it is a real issue or a benign artifact."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "N/A \u2014 verify finding first.",
+      "references": []
+    },
+    "fingerprint|tech_fingerprint|https://example.com|Technology fingerprint": {
+      "title": "Technology fingerprint",
+      "finding_type": "tech_fingerprint",
+      "description": "server=cloudflare",
+      "steps": [
+        "1. Reproduce the request that produced this finding.",
+        "2. Confirm the observation is consistent across retries.",
+        "3. Determine whether it is a real issue or a benign artifact."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "N/A \u2014 verify finding first.",
+      "references": []
+    },
+    "dns_enum|dns_a|example.com|A record(s): 104.20.23.154, 172.66.147.243, 2606:4700:10::68": {
+      "title": "A record(s): 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3",
+      "finding_type": "dns_a",
+      "description": "example.com resolves to 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3",
+      "steps": [
+        "1. Reproduce the request that produced this finding.",
+        "2. Confirm the observation is consistent across retries.",
+        "3. Determine whether it is a real issue or a benign artifact."
+      ],
+      "sample_command": "curl -sI example.com",
+      "remediation": "N/A \u2014 verify finding first.",
+      "references": []
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Content Security Policy": {
+      "title": "Confirm missing security header: content-security-policy",
+      "finding_type": "missing_security_header",
+      "description": "The content-security-policy header is absent on this response.",
+      "steps": [
+        "1. Re-fetch the page and grep the headers:",
+        "   curl -sI https://example.com | grep -i 'content-security-policy'",
+        "2. If the header truly never appears across any sample page, this is a real gap, not a one-off."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "Add a strict Content-Security-Policy. Start with default-src 'self' and tighten from there.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ]
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Clickjacking Protection": {
+      "title": "Confirm missing security header: x-frame-options",
+      "finding_type": "missing_security_header",
+      "description": "The x-frame-options header is absent on this response.",
+      "steps": [
+        "1. Re-fetch the page and grep the headers:",
+        "   curl -sI https://example.com | grep -i 'x-frame-options'",
+        "2. If the header truly never appears across any sample page, this is a real gap, not a one-off."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "Send `X-Frame-Options: SAMEORIGIN` (or use CSP frame-ancestors).",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ]
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: MIME Sniffing Protection": {
+      "title": "Confirm missing security header: x-content-type-options",
+      "finding_type": "missing_security_header",
+      "description": "The x-content-type-options header is absent on this response.",
+      "steps": [
+        "1. Re-fetch the page and grep the headers:",
+        "   curl -sI https://example.com | grep -i 'x-content-type-options'",
+        "2. If the header truly never appears across any sample page, this is a real gap, not a one-off."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "Send `X-Content-Type-Options: nosniff` on every response.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ]
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: HSTS": {
+      "title": "Confirm missing security header: strict-transport-security",
+      "finding_type": "missing_security_header",
+      "description": "The strict-transport-security header is absent on this response.",
+      "steps": [
+        "1. Re-fetch the page and grep the headers:",
+        "   curl -sI https://example.com | grep -i 'strict-transport-security'",
+        "2. If the header truly never appears across any sample page, this is a real gap, not a one-off."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "Send `Strict-Transport-Security: max-age=31536000; includeSubDomains` on HTTPS responses, then submit the domain to the HSTS preload list.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ]
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: XSS Protection (legacy)": {
+      "title": "Confirm missing security header: x-xss-protection",
+      "finding_type": "missing_security_header",
+      "description": "The x-xss-protection header is absent on this response.",
+      "steps": [
+        "1. Re-fetch the page and grep the headers:",
+        "   curl -sI https://example.com | grep -i 'x-xss-protection'",
+        "2. If the header truly never appears across any sample page, this is a real gap, not a one-off."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "Set the x-xss-protection response header per OWASP guidance.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ]
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Referrer Policy": {
+      "title": "Confirm missing security header: referrer-policy",
+      "finding_type": "missing_security_header",
+      "description": "The referrer-policy header is absent on this response.",
+      "steps": [
+        "1. Re-fetch the page and grep the headers:",
+        "   curl -sI https://example.com | grep -i 'referrer-policy'",
+        "2. If the header truly never appears across any sample page, this is a real gap, not a one-off."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "Send `Referrer-Policy: strict-origin-when-cross-origin`.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ]
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Permissions Policy": {
+      "title": "Confirm missing security header: permissions-policy",
+      "finding_type": "missing_security_header",
+      "description": "The permissions-policy header is absent on this response.",
+      "steps": [
+        "1. Re-fetch the page and grep the headers:",
+        "   curl -sI https://example.com | grep -i 'permissions-policy'",
+        "2. If the header truly never appears across any sample page, this is a real gap, not a one-off."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "Send a `Permissions-Policy` header explicitly disabling features your app doesn't need.",
+      "references": [
+        "https://owasp.org/www-project-secure-headers/"
+      ]
+    },
+    "headers|info_disclosure_header|https://example.com|Information disclosure: server": {
+      "title": "Information disclosure: server",
+      "finding_type": "info_disclosure_header",
+      "description": "Server version disclosed: cloudflare",
+      "steps": [
+        "1. Reproduce the request that produced this finding.",
+        "2. Confirm the observation is consistent across retries.",
+        "3. Determine whether it is a real issue or a benign artifact."
+      ],
+      "sample_command": "curl -sI https://example.com",
+      "remediation": "N/A \u2014 verify finding first.",
+      "references": []
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22|Dork suggestions: exposed_config (5 queries)": {
+      "title": "Review Google dork bundle: exposed_config",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'exposed_config'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com filetype:env \"DB_PASSWORD\"",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup|Dork suggestions: exposed_backups (3 queries)": {
+      "title": "Review Google dork bundle: exposed_backups",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'exposed_backups'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+%22index+of%22+backup",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com ext:bak OR ext:old OR ext:backup",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22|Dork suggestions: exposed_databases (3 queries)": {
+      "title": "Review Google dork bundle: exposed_databases",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'exposed_databases'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Adb",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com filetype:sql \"INSERT INTO\"",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential|Dork suggestions: exposed_documents (3 queries)": {
+      "title": "Review Google dork bundle: exposed_documents",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'exposed_documents'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com filetype:pdf confidential",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin|Dork suggestions: login_pages (3 queries)": {
+      "title": "Review Google dork bundle: login_pages",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'login_pages'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com inurl:admin inurl:login",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22|Dork suggestions: api_docs (3 queries)": {
+      "title": "Review Google dork bundle: api_docs",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'api_docs'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com intitle:\"api documentation\"",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22|Dork suggestions: directory_listings (3 queries)": {
+      "title": "Review Google dork bundle: directory_listings",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'directory_listings'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com intitle:\"index of /\"",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin|Dork suggestions: wordpress (3 queries)": {
+      "title": "Review Google dork bundle: wordpress",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'wordpress'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com inurl:wp-admin",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com|Dork suggestions: cloud_storage (3 queries)": {
+      "title": "Review Google dork bundle: cloud_storage",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'cloud_storage'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com site:s3.amazonaws.com",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD|Dork suggestions: code_leaks (3 queries)": {
+      "title": "Review Google dork bundle: code_leaks",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'code_leaks'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3A.svn",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com inurl:.git/HEAD",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22|Dork suggestions: bug_bounty_program (3 queries)": {
+      "title": "Review Google dork bundle: bug_bounty_program",
+      "finding_type": "dork_suggestion",
+      "description": "Auto-generated dorks for this target. The tool did not query Google \u2014 you must review manually.",
+      "steps": [
+        "1. These dorks were generated for template 'bug_bounty_program'. They were NOT executed \u2014 Google scraping is off by default.",
+        "2. Open each URL below in your browser (or your AI of choice) to review the real Google results manually.",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt",
+        "   \u2022 https://www.google.com/search?q=site%3Aexample.com+%22submit+vulnerability%22",
+        "3. Treat any matching public document / endpoint as informational unless it reveals secrets, then escalate."
+      ],
+      "sample_command": "# Sample query (paste into Google):\nsite:example.com \"bug bounty\" OR \"responsible disclosure\"",
+      "remediation": "Remove sensitive files / endpoints surfaced by these dorks from public indexing; configure robots.txt and noindex headers; rotate any exposed credentials.",
+      "references": [
+        "https://www.exploit-db.com/google-hacking-database",
+        "https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/01-Information_Gathering/01-Conduct_Search_Engine_Discovery_Reconnaissance_for_Information_Leakage"
+      ]
+    }
+  },
+  "impacts": {
+    "ssl|weak_key_size|https://example.com|Weak key size: 256 bits": {
+      "priority_tier": "P2",
+      "suggested_sla": "72 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=HIGH, classification=INTERESTING"
+    },
+    "fingerprint|tech_fingerprint|https://example.com|Technology fingerprint": {
+      "priority_tier": "P4",
+      "suggested_sla": "Informational",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=INFO, classification=FALSE_ALARM, score=0.5"
+    },
+    "dns_enum|dns_a|example.com|A record(s): 104.20.23.154, 172.66.147.243, 2606:4700:10::68": {
+      "priority_tier": "P4",
+      "suggested_sla": "Informational",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=INFO, classification=FALSE_ALARM, score=0.5"
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Content Security Policy": {
+      "priority_tier": "P2",
+      "suggested_sla": "72 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=HIGH, classification=COMMON, score=7.0"
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Clickjacking Protection": {
+      "priority_tier": "P3",
+      "suggested_sla": "30 days",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=MEDIUM, classification=COMMON, score=5.0"
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: MIME Sniffing Protection": {
+      "priority_tier": "P4",
+      "suggested_sla": "Best effort / next release",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=LOW, classification=COMMON, score=2.0"
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: HSTS": {
+      "priority_tier": "P2",
+      "suggested_sla": "72 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=HIGH, classification=COMMON, score=7.0"
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: XSS Protection (legacy)": {
+      "priority_tier": "P4",
+      "suggested_sla": "Best effort / next release",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=LOW, classification=COMMON, score=2.0"
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Referrer Policy": {
+      "priority_tier": "P4",
+      "suggested_sla": "Best effort / next release",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=LOW, classification=COMMON, score=2.0"
+    },
+    "headers|missing_security_header|https://example.com|Missing security header: Permissions Policy": {
+      "priority_tier": "P4",
+      "suggested_sla": "Best effort / next release",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=LOW, classification=COMMON, score=2.0"
+    },
+    "headers|info_disclosure_header|https://example.com|Information disclosure: server": {
+      "priority_tier": "P4",
+      "suggested_sla": "Best effort / next release",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=LOW, classification=COMMON, score=2.0"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22|Dork suggestions: exposed_config (5 queries)": {
+      "priority_tier": "P2",
+      "suggested_sla": "72 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=HIGH, classification=INTERESTING"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup|Dork suggestions: exposed_backups (3 queries)": {
+      "priority_tier": "P2",
+      "suggested_sla": "72 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=HIGH, classification=INTERESTING"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22|Dork suggestions: exposed_databases (3 queries)": {
+      "priority_tier": "P1",
+      "suggested_sla": "24 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=CRITICAL, classification=INTERESTING"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential|Dork suggestions: exposed_documents (3 queries)": {
+      "priority_tier": "P3",
+      "suggested_sla": "30 days",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=MEDIUM, classification=COMMON, score=5.0"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin|Dork suggestions: login_pages (3 queries)": {
+      "priority_tier": "P3",
+      "suggested_sla": "30 days",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=MEDIUM, classification=COMMON, score=6.0"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22|Dork suggestions: api_docs (3 queries)": {
+      "priority_tier": "P4",
+      "suggested_sla": "Best effort / next release",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=LOW, classification=COMMON, score=2.0"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22|Dork suggestions: directory_listings (3 queries)": {
+      "priority_tier": "P3",
+      "suggested_sla": "30 days",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=MEDIUM, classification=COMMON, score=5.0"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin|Dork suggestions: wordpress (3 queries)": {
+      "priority_tier": "P3",
+      "suggested_sla": "30 days",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=MEDIUM, classification=COMMON, score=6.0"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com|Dork suggestions: cloud_storage (3 queries)": {
+      "priority_tier": "P2",
+      "suggested_sla": "72 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=HIGH, classification=INTERESTING"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD|Dork suggestions: code_leaks (3 queries)": {
+      "priority_tier": "P2",
+      "suggested_sla": "72 hours",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=HIGH, classification=INTERESTING"
+    },
+    "dorks|dork_suggestion|https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22|Dork suggestions: bug_bounty_program (3 queries)": {
+      "priority_tier": "P4",
+      "suggested_sla": "Informational",
+      "data_at_risk": "unknown",
+      "compliance_hints": [],
+      "rationale": "severity=INFO, classification=COMMON, score=0.5"
+    }
+  },
+  "findings_summary": [
+    "6 INTERESTING finding(s) \u2014 investigate first.",
+    "Missing security headers: Clickjacking Protection, Content Security Policy, HSTS, MIME Sniffing Protection, Permissions Policy, Referrer Policy, XSS Protection (legacy).",
+    "1 TLS/cert finding(s) reported."
+  ],
+  "findings": {
+    "INTERESTING": [
+      {
+        "module": "ssl",
+        "type": "weak_key_size",
+        "url": "https://example.com",
+        "severity": "HIGH",
+        "interesting": true,
+        "title": "Weak key size: 256 bits",
+        "details": "Key size 256 < recommended 2048",
+        "duplicate_count": 1,
+        "classification": "INTERESTING",
+        "classification_confidence": 0.85,
+        "classification_reason": "module flagged as interesting",
+        "classification_meta": {
+          "emoji": "\ud83d\udd34",
+          "color": "red",
+          "action": "investigate immediately",
+          "priority": 2
+        },
+        "priority": 2
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22",
+        "title": "Dork suggestions: exposed_config (5 queries)",
+        "details": "Configuration files exposing credentials. Open the URLs below in Google to review manually.",
+        "severity": "HIGH",
+        "evidence": {
+          "template": "exposed_config",
+          "description": "Configuration files exposing credentials",
+          "queries": [
+            "site:example.com filetype:env \"DB_PASSWORD\"",
+            "site:example.com filetype:env",
+            "site:example.com filetype:yaml \"password\"",
+            "site:example.com filetype:ini \"database\"",
+            "site:example.com filetype:config \"connectionString\""
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22",
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aenv",
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22",
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22",
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aenv",
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Ayaml+%22password%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aini+%22database%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aenv+%22DB_PASSWORD%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aenv",
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Ayaml+%22password%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aini+%22database%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Aconfig+%22connectionString%22"
+          ],
+          "mode": "preview"
+        },
+        "interesting": true,
+        "duplicate_count": 1,
+        "classification": "INTERESTING",
+        "classification_confidence": 0.85,
+        "classification_reason": "module flagged as interesting",
+        "classification_meta": {
+          "emoji": "\ud83d\udd34",
+          "color": "red",
+          "action": "investigate immediately",
+          "priority": 2
+        },
+        "priority": 2
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup",
+        "title": "Dork suggestions: exposed_backups (3 queries)",
+        "details": "Backup files left in the web root. Open the URLs below in Google to review manually.",
+        "severity": "HIGH",
+        "evidence": {
+          "template": "exposed_backups",
+          "description": "Backup files left in the web root",
+          "queries": [
+            "site:example.com ext:bak OR ext:old OR ext:backup",
+            "site:example.com \"index of\" backup",
+            "site:example.com inurl:backup filetype:sql"
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup",
+            "https://www.google.com/search?q=site%3Aexample.com+%22index+of%22+backup",
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup",
+            "https://www.bing.com/search?q=site%3Aexample.com+%22index+of%22+backup",
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+ext%3Abak+OR+ext%3Aold+OR+ext%3Abackup",
+            "https://duckduckgo.com/?q=site%3Aexample.com+%22index+of%22+backup",
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Abackup+filetype%3Asql"
+          ],
+          "mode": "preview"
+        },
+        "interesting": true,
+        "duplicate_count": 1,
+        "classification": "INTERESTING",
+        "classification_confidence": 0.85,
+        "classification_reason": "backup file found alongside admin path",
+        "classification_meta": {
+          "emoji": "\ud83d\udd34",
+          "color": "red",
+          "action": "investigate immediately",
+          "priority": 2
+        },
+        "priority": 2
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22",
+        "title": "Dork suggestions: exposed_databases (3 queries)",
+        "details": "Exposed database dumps. Open the URLs below in Google to review manually.",
+        "severity": "CRITICAL",
+        "evidence": {
+          "template": "exposed_databases",
+          "description": "Exposed database dumps",
+          "queries": [
+            "site:example.com filetype:sql \"INSERT INTO\"",
+            "site:example.com filetype:db",
+            "site:example.com ext:mdb OR ext:sql OR ext:sqlite"
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22",
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Adb",
+            "https://www.google.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Adb",
+            "https://www.bing.com/search?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Asql+%22INSERT+INTO%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Adb",
+            "https://duckduckgo.com/?q=site%3Aexample.com+ext%3Amdb+OR+ext%3Asql+OR+ext%3Asqlite"
+          ],
+          "mode": "preview"
+        },
+        "interesting": true,
+        "duplicate_count": 1,
+        "classification": "INTERESTING",
+        "classification_confidence": 0.85,
+        "classification_reason": "module flagged as interesting",
+        "classification_meta": {
+          "emoji": "\ud83d\udd34",
+          "color": "red",
+          "action": "investigate immediately",
+          "priority": 2
+        },
+        "priority": 2
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com",
+        "title": "Dork suggestions: cloud_storage (3 queries)",
+        "details": "Exposed cloud-bucket references. Open the URLs below in Google to review manually.",
+        "severity": "HIGH",
+        "evidence": {
+          "template": "cloud_storage",
+          "description": "Exposed cloud-bucket references",
+          "queries": [
+            "site:example.com site:s3.amazonaws.com",
+            "site:example.com site:storage.googleapis.com",
+            "site:example.com site:blob.core.windows.net"
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com",
+            "https://www.google.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com",
+            "https://www.google.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+site%3As3.amazonaws.com",
+            "https://www.bing.com/search?q=site%3Aexample.com+site%3Astorage.googleapis.com",
+            "https://www.bing.com/search?q=site%3Aexample.com+site%3Ablob.core.windows.net"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+site%3As3.amazonaws.com",
+            "https://duckduckgo.com/?q=site%3Aexample.com+site%3Astorage.googleapis.com",
+            "https://duckduckgo.com/?q=site%3Aexample.com+site%3Ablob.core.windows.net"
+          ],
+          "mode": "preview"
+        },
+        "interesting": true,
+        "duplicate_count": 1,
+        "classification": "INTERESTING",
+        "classification_confidence": 0.85,
+        "classification_reason": "module flagged as interesting",
+        "classification_meta": {
+          "emoji": "\ud83d\udd34",
+          "color": "red",
+          "action": "investigate immediately",
+          "priority": 2
+        },
+        "priority": 2
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD",
+        "title": "Dork suggestions: code_leaks (3 queries)",
+        "details": "Source code / repo exposure. Open the URLs below in Google to review manually.",
+        "severity": "HIGH",
+        "evidence": {
+          "template": "code_leaks",
+          "description": "Source code / repo exposure",
+          "queries": [
+            "site:example.com inurl:.git/HEAD",
+            "site:example.com inurl:.svn",
+            "site:example.com \"BEGIN RSA PRIVATE KEY\""
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD",
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3A.svn",
+            "https://www.google.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3A.git%2FHEAD",
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3A.svn",
+            "https://www.bing.com/search?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A.git%2FHEAD",
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A.svn",
+            "https://duckduckgo.com/?q=site%3Aexample.com+%22BEGIN+RSA+PRIVATE+KEY%22"
+          ],
+          "mode": "preview"
+        },
+        "interesting": true,
+        "duplicate_count": 1,
+        "classification": "INTERESTING",
+        "classification_confidence": 0.85,
+        "classification_reason": "module flagged as interesting",
+        "classification_meta": {
+          "emoji": "\ud83d\udd34",
+          "color": "red",
+          "action": "investigate immediately",
+          "priority": 2
+        },
+        "priority": 2
+      }
+    ],
+    "COMMON": [
+      {
+        "module": "headers",
+        "type": "missing_security_header",
+        "url": "https://example.com",
+        "title": "Missing security header: Content Security Policy",
+        "severity": "HIGH",
+        "details": "No CSP header \u2014 XSS attacks possible",
+        "header_name": "content-security-policy",
+        "raw": "header 'content-security-policy' not present",
+        "common_finding": true,
+        "duplicate_count": 1,
+        "score": 7.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: missing_security_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "headers",
+        "type": "missing_security_header",
+        "url": "https://example.com",
+        "title": "Missing security header: HSTS",
+        "severity": "HIGH",
+        "details": "Missing HSTS \u2014 HTTPS not enforced",
+        "header_name": "strict-transport-security",
+        "raw": "header 'strict-transport-security' not present",
+        "common_finding": true,
+        "duplicate_count": 1,
+        "score": 7.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: missing_security_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin",
+        "title": "Dork suggestions: login_pages (3 queries)",
+        "details": "Admin / login interfaces. Open the URLs below in Google to review manually.",
+        "severity": "MEDIUM",
+        "evidence": {
+          "template": "login_pages",
+          "description": "Admin / login interfaces",
+          "queries": [
+            "site:example.com inurl:admin inurl:login",
+            "site:example.com intitle:\"login\" OR intitle:\"admin\"",
+            "site:example.com intitle:\"Dashboard\" inurl:admin"
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin",
+            "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22",
+            "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin",
+            "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Aadmin+inurl%3Alogin",
+            "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22login%22+OR+intitle%3A%22admin%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22Dashboard%22+inurl%3Aadmin"
+          ],
+          "mode": "preview"
+        },
+        "interesting": false,
+        "duplicate_count": 1,
+        "score": 6.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: dork_suggestion",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin",
+        "title": "Dork suggestions: wordpress (3 queries)",
+        "details": "WordPress-specific exposure. Open the URLs below in Google to review manually.",
+        "severity": "MEDIUM",
+        "evidence": {
+          "template": "wordpress",
+          "description": "WordPress-specific exposure",
+          "queries": [
+            "site:example.com inurl:wp-admin",
+            "site:example.com inurl:wp-content/uploads",
+            "site:example.com inurl:xmlrpc.php"
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-admin",
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads",
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Awp-admin",
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads",
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Axmlrpc.php"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Awp-admin",
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Awp-content%2Fuploads",
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Axmlrpc.php"
+          ],
+          "mode": "preview"
+        },
+        "interesting": false,
+        "duplicate_count": 1,
+        "score": 6.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: dork_suggestion",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "headers",
+        "type": "missing_security_header",
+        "url": "https://example.com",
+        "title": "Missing security header: Clickjacking Protection",
+        "severity": "MEDIUM",
+        "details": "Missing X-Frame-Options \u2014 clickjacking possible",
+        "header_name": "x-frame-options",
+        "raw": "header 'x-frame-options' not present",
+        "common_finding": true,
+        "duplicate_count": 1,
+        "score": 5.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: missing_security_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential",
+        "title": "Dork suggestions: exposed_documents (3 queries)",
+        "details": "Confidential documents indexed publicly. Open the URLs below in Google to review manually.",
+        "severity": "MEDIUM",
+        "evidence": {
+          "template": "exposed_documents",
+          "description": "Confidential documents indexed publicly",
+          "queries": [
+            "site:example.com filetype:pdf confidential",
+            "site:example.com filetype:docx \"not for distribution\"",
+            "site:example.com filetype:xlsx financial OR budget"
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential",
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22",
+            "https://www.google.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Apdf+confidential",
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Apdf+confidential",
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Adocx+%22not+for+distribution%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+filetype%3Axlsx+financial+OR+budget"
+          ],
+          "mode": "preview"
+        },
+        "interesting": false,
+        "duplicate_count": 1,
+        "score": 5.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: dork_suggestion",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22",
+        "title": "Dork suggestions: directory_listings (3 queries)",
+        "details": "Open directory indexes. Open the URLs below in Google to review manually.",
+        "severity": "MEDIUM",
+        "evidence": {
+          "template": "directory_listings",
+          "description": "Open directory indexes",
+          "queries": [
+            "site:example.com intitle:\"index of /\"",
+            "site:example.com intitle:\"index of\" backup",
+            "site:example.com intitle:\"index of\" database"
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22",
+            "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup",
+            "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+backup",
+            "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22index+of%22+database"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of+%2F%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of%22+backup",
+            "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22index+of%22+database"
+          ],
+          "mode": "preview"
+        },
+        "interesting": false,
+        "duplicate_count": 1,
+        "score": 5.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: dork_suggestion",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "headers",
+        "type": "missing_security_header",
+        "url": "https://example.com",
+        "title": "Missing security header: MIME Sniffing Protection",
+        "severity": "LOW",
+        "details": "Missing X-Content-Type-Options",
+        "header_name": "x-content-type-options",
+        "raw": "header 'x-content-type-options' not present",
+        "common_finding": true,
+        "duplicate_count": 1,
+        "score": 2.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: missing_security_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "headers",
+        "type": "missing_security_header",
+        "url": "https://example.com",
+        "title": "Missing security header: XSS Protection (legacy)",
+        "severity": "LOW",
+        "details": "Missing X-XSS-Protection",
+        "header_name": "x-xss-protection",
+        "raw": "header 'x-xss-protection' not present",
+        "common_finding": true,
+        "duplicate_count": 1,
+        "score": 2.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: missing_security_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "headers",
+        "type": "missing_security_header",
+        "url": "https://example.com",
+        "title": "Missing security header: Referrer Policy",
+        "severity": "LOW",
+        "details": "Missing Referrer-Policy",
+        "header_name": "referrer-policy",
+        "raw": "header 'referrer-policy' not present",
+        "common_finding": true,
+        "duplicate_count": 1,
+        "score": 2.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: missing_security_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "headers",
+        "type": "missing_security_header",
+        "url": "https://example.com",
+        "title": "Missing security header: Permissions Policy",
+        "severity": "LOW",
+        "details": "Missing Permissions-Policy",
+        "header_name": "permissions-policy",
+        "raw": "header 'permissions-policy' not present",
+        "common_finding": true,
+        "duplicate_count": 1,
+        "score": 2.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: missing_security_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "headers",
+        "type": "info_disclosure_header",
+        "url": "https://example.com",
+        "title": "Information disclosure: server",
+        "severity": "LOW",
+        "details": "Server version disclosed: cloudflare",
+        "header_name": "server",
+        "header_value": "cloudflare",
+        "raw": "server: cloudflare",
+        "interesting_if_version": false,
+        "duplicate_count": 1,
+        "score": 2.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: info_disclosure_header",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22",
+        "title": "Dork suggestions: api_docs (3 queries)",
+        "details": "Public API docs / Swagger UIs. Open the URLs below in Google to review manually.",
+        "severity": "LOW",
+        "evidence": {
+          "template": "api_docs",
+          "description": "Public API docs / Swagger UIs",
+          "queries": [
+            "site:example.com intitle:\"api documentation\"",
+            "site:example.com inurl:swagger OR inurl:swagger-ui",
+            "site:example.com inurl:\"/api/v1\" OR inurl:\"/api/v2\""
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22",
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui",
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+intitle%3A%22api+documentation%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui",
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+intitle%3A%22api+documentation%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Aswagger+OR+inurl%3Aswagger-ui",
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3A%22%2Fapi%2Fv1%22+OR+inurl%3A%22%2Fapi%2Fv2%22"
+          ],
+          "mode": "preview"
+        },
+        "interesting": false,
+        "duplicate_count": 1,
+        "score": 2.0,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: dork_suggestion",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      },
+      {
+        "module": "dorks",
+        "type": "dork_suggestion",
+        "url": "https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22",
+        "title": "Dork suggestions: bug_bounty_program (3 queries)",
+        "details": "Public bug-bounty program for the target. Open the URLs below in Google to review manually.",
+        "severity": "INFO",
+        "evidence": {
+          "template": "bug_bounty_program",
+          "description": "Public bug-bounty program for the target",
+          "queries": [
+            "site:example.com \"bug bounty\" OR \"responsible disclosure\"",
+            "site:example.com inurl:security.txt",
+            "site:example.com \"submit vulnerability\""
+          ],
+          "google_urls": [
+            "https://www.google.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22",
+            "https://www.google.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt",
+            "https://www.google.com/search?q=site%3Aexample.com+%22submit+vulnerability%22"
+          ],
+          "bing_urls": [
+            "https://www.bing.com/search?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22",
+            "https://www.bing.com/search?q=site%3Aexample.com+inurl%3Asecurity.txt",
+            "https://www.bing.com/search?q=site%3Aexample.com+%22submit+vulnerability%22"
+          ],
+          "ddg_urls": [
+            "https://duckduckgo.com/?q=site%3Aexample.com+%22bug+bounty%22+OR+%22responsible+disclosure%22",
+            "https://duckduckgo.com/?q=site%3Aexample.com+inurl%3Asecurity.txt",
+            "https://duckduckgo.com/?q=site%3Aexample.com+%22submit+vulnerability%22"
+          ],
+          "mode": "preview"
+        },
+        "interesting": false,
+        "duplicate_count": 1,
+        "score": 0.5,
+        "classification": "COMMON",
+        "classification_confidence": 0.75,
+        "classification_reason": "known common type: dork_suggestion",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe1",
+          "color": "yellow",
+          "action": "review and assess",
+          "priority": 1
+        },
+        "priority": 1
+      }
+    ],
+    "FALSE_ALARM": [
+      {
+        "module": "fingerprint",
+        "type": "tech_fingerprint",
+        "url": "https://example.com",
+        "severity": "INFO",
+        "title": "Technology fingerprint",
+        "details": "server=cloudflare",
+        "tech": {
+          "server": "cloudflare"
+        },
+        "duplicate_count": 1,
+        "score": 0.5,
+        "classification": "FALSE_ALARM",
+        "classification_confidence": 0.6,
+        "classification_reason": "low severity score: 0.5",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe2",
+          "color": "green",
+          "action": "no action required",
+          "priority": 0
+        },
+        "priority": 0
+      },
+      {
+        "module": "dns_enum",
+        "type": "dns_a",
+        "url": "example.com",
+        "severity": "INFO",
+        "title": "A record(s): 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3",
+        "details": "example.com resolves to 104.20.23.154, 172.66.147.243, 2606:4700:10::6814:179a, 2606:4700:10::ac42:93f3",
+        "evidence": {
+          "records": [
+            "104.20.23.154",
+            "172.66.147.243",
+            "2606:4700:10::6814:179a",
+            "2606:4700:10::ac42:93f3"
+          ]
+        },
+        "duplicate_count": 1,
+        "score": 0.5,
+        "classification": "FALSE_ALARM",
+        "classification_confidence": 0.6,
+        "classification_reason": "low severity score: 0.5",
+        "classification_meta": {
+          "emoji": "\ud83d\udfe2",
+          "color": "green",
+          "action": "no action required",
+          "priority": 0
+        },
+        "priority": 0
+      }
+    ]
+  }
+}

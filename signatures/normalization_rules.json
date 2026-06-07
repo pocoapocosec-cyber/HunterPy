@@ -1,0 +1,20 @@
+{
+  "asset_criticality": {
+    "production":  5,
+    "staging":     3,
+    "development": 2,
+    "unknown":     1
+  },
+  "exploit_difficulty": {
+    "trivial":   3,
+    "moderate":  2,
+    "difficult": 1,
+    "none":      0
+  },
+  "weights": {
+    "cvss":          0.4,
+    "criticality":   0.3,
+    "exploitability":0.2,
+    "confidence":    0.1
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "wafs": {
+    "Cloudflare": {
+      "headers": ["cf-ray", "cf-cache-status", "server: cloudflare"],
+      "cookies": ["__cfduid", "cf_clearance", "__cf_bm"]
+    },
+    "Akamai": {
+      "headers": ["x-check-cacheable", "akamai-origin-hop", "x-akamai-transformed"],
+      "cookies": ["ak_bmsc", "bm_sv"]
+    },
+    "AWS WAF": {
+      "headers": ["x-amzn-requestid", "x-amz-cf-id", "x-amzn-trace-id"],
+      "cookies": ["aws-waf-token"]
+    },
+    "Sucuri": {
+      "headers": ["x-sucuri-id", "x-sucuri-cache"],
+      "cookies": []
+    },
+    "Imperva": {
+      "headers": ["x-iinfo", "x-cdn: incapsula"],
+      "cookies": ["visid_incap_", "incap_ses_"]
+    }
+  },
+  "scan_adjustments": {
+    "Cloudflare": {"delay": 5.0, "randomize_ua": true,  "max_concurrent": 2},
+    "Akamai":     {"delay": 3.0, "randomize_ua": true,  "max_concurrent": 3},
+    "AWS WAF":    {"delay": 4.0, "randomize_ua": false, "max_concurrent": 2},
+    "Sucuri":     {"delay": 4.0, "randomize_ua": true,  "max_concurrent": 2},
+    "Imperva":    {"delay": 5.0, "randomize_ua": true,  "max_concurrent": 2},
+    "Unknown":    {"delay": 2.0, "randomize_ua": false, "max_concurrent": 5}
+  }
+}
